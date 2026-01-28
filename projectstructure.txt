@@ -1,0 +1,179 @@
+Root Directory
+
+README.md
+High-level project overview, architecture, setup instructions, and use cases.
+
+.gitignore
+Excludes credentials, environment files, logs, and build artifacts.
+
+docker-compose.yml 
+Local development setup for backend services.
+
+frontend/
+
+Handles audio capture, user interaction, and live display of translated speech.
+
+web/
+Browser-based client using Web Audio API.
+
+Audio capture and preprocessing (noise suppression, echo cancellation)
+
+Language selection (Spanish ↔ English)
+
+Live captions display
+
+Playback of synthesized translated speech
+
+android/ (optional)
+Android client built with Android Studio.
+
+Microphone input
+
+Material UI
+
+Real-time captions and audio playback
+
+backend/
+
+Core streaming and orchestration layer hosted on Google Cloud Run.
+
+api/
+Main application entry point.
+
+Audio streaming endpoint
+
+Session management
+
+Language routing logic
+
+services/
+Google Cloud service integrations.
+
+speech_to_text_service
+Streaming ASR logic and speech adaptation
+
+translation_service
+Chunked translation handling
+
+text_to_speech_service
+Voice synthesis and audio streaming
+
+streaming/
+Real-time processing logic.
+
+Interim transcript handling
+
+Partial translation updates
+
+Final segment reconciliation
+
+utils/
+Shared helpers (audio formatting, chunking, timestamps)
+
+evaluation/
+
+Datasets, scripts, and metrics used for benchmarking and analysis.
+
+datasets/
+
+speech/
+Common Voice Spanish and English samples
+
+text/
+Parallel Spanish–English text corpora
+
+noise/
+Ambient and synthetic noise samples
+
+scripts/
+
+wer_evaluation
+Speech-to-text accuracy testing
+
+bleu_evaluation
+Translation quality evaluation
+
+latency_benchmark
+End-to-end and per-stage latency testing
+
+results/
+Stored evaluation outputs and reports
+
+mlops/
+
+Automation, deployment, and monitoring configuration.
+
+ci_cd/
+
+cloudbuild.yaml
+Build and deployment pipeline for Cloud Run
+
+monitoring/
+
+latency_dashboard
+
+error_rate_dashboard
+
+throughput_dashboard
+
+logging/
+
+structured_logging_config
+
+infrastructure/
+
+Infrastructure and security configuration.
+
+iam/
+
+service_accounts
+
+permissions
+
+secrets/
+
+api_keys (managed via Secret Manager)
+
+deployment/
+
+cloud_run_config
+
+region_settings
+
+docs/
+
+Project documentation and presentation materials.
+
+architecture_diagram
+
+demo_script
+
+evaluation_summary
+
+poster_assets
+
+assets/
+
+Non-code resources.
+
+audio_samples/
+
+screenshots/
+
+logos/
+
+Summary
+
+This structure supports:
+
+Real-time streaming ML pipelines
+
+Modular Google Cloud integrations
+
+Reproducible evaluation and benchmarking
+
+Production-ready deployment and monitoring
+
+Clear separation between ML, backend, and frontend
+
+It mirrors how a real Google Cloud or public-sector ML system would be organized, while remaining feasible for an academic MLOps project.
