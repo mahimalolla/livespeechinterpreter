@@ -1,5 +1,4 @@
-# Live Interpreter 
-(name tbd)
+# Live Interpreter
 
 Our project is a real-time **speech-to-speech translation system** that enables live, bidirectional communication between **Spanish and English** speakers.  
 It converts spoken language into translated speech with low latency, making multilingual conversations accessible in civic, public-sector, and everyday settings.
