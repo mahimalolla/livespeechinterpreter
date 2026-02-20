@@ -1,10 +1,9 @@
 # Live Interpreter
 
 Our project is a real-time **speech-to-speech translation system** that enables live, bidirectional communication between **Spanish and English** speakers.  
-It converts spoken language into translated speech with low latency, making multilingual conversations accessible in civic, public-sector, and everyday settings.
+It converts spoken language into translated speech with the low latency, making multilingual conversations accessible in civic, public-sector, and everyday settings.
 
 Built entirely using **Google Cloud products**, Voxlate focuses on **real-time streaming, robustness to noise and accents, and production-grade MLOps practices**.
-
 
 ---
 
