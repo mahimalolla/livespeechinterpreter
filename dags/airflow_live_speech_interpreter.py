@@ -20,6 +20,7 @@ def run_script(script_path):
     if result.returncode != 0:
         raise Exception(f"Script failed: {script_path}\n{result.stderr}")
     return result.stdout
+
 def acquire_opus_callable():
     return run_script(os.path.join(BASE_DIR, "acquire", "acquire_opus.py"))
 
