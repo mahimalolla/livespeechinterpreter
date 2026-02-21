@@ -38,10 +38,10 @@ def preprocess_nmt_callable():
     return run_script(os.path.join(BASE_DIR, "pre_process", "preprocess_nmt.py"))
 
 def evaluation_callable():
-    logger.warning("Evaluation task is a placeholder. Add your WER/BLEU/MOS script to complete this step.")
+    logger.warning("Evaluation not implemented yet. Add your evaluation logic to complete this step.")
 
 def save_results_callable():
-    logger.warning("Save results task is a placeholder. Add your Cloud SQL saving logic to complete this step.")
+    logger.warning("Save results not implemented yet. Add your save logic to complete this step.")
 
 default_args = {
     'owner': 'Henil',
