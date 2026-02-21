@@ -2,16 +2,21 @@
 import os
 import sys
 import subprocess
+import logging
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 
-# Set base directory for scripts dynamically [cite: 39-41]
+logger = logging.getLogger(__name__)
+
+# Set base directory for scripts
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
 def run_script(script_path):
     result = subprocess.run([sys.executable, script_path], capture_output=True, text=True)
+    if result.stdout:
+        logger.info(f"Output:\n{result.stdout}")
     if result.returncode != 0:
         raise Exception(f"Script failed: {script_path}\n{result.stderr}")
     return result.stdout
@@ -32,23 +37,28 @@ def preprocess_nmt_callable():
     # Path logic for your existing NMT cleaning script
     return run_script(os.path.join(BASE_DIR, "pre_process", "preprocess_nmt.py"))
 
+def evaluation_callable():
+    logger.warning("Evaluation task is a placeholder. Add your WER/BLEU/MOS script to complete this step.")
+
+def save_results_callable():
+    logger.warning("Save results task is a placeholder. Add your Cloud SQL saving logic to complete this step.")
+
 default_args = {
     'owner': 'Henil',
     'start_date': datetime(2026, 2, 19),
-    'retries': 1,  # Number of retries in case of task failure [cite: 59, 83]
+    'retries': 1,  # Number of retries in case of task failure
     'retry_delay': timedelta(minutes=5),  # Delay before retries
     'email_on_failure': True,
     'email_on_retry': False,
     'email': ['your_email@example.com'],
 }
 
-# --- Create a DAG instance named 'live_speech_interpreter_pipeline' ---
+# DAG
 with DAG(
     'live_speech_interpreter_pipeline',
     default_args=default_args,
     description='End-to-end data pipeline for ASR and NMT components',
     catchup=False,
-    schedule_interval=None,
 ) as dag:
 
     # Task to pull MD5 hashed data from GCP using DVC
@@ -87,13 +97,13 @@ with DAG(
     # Task for evaluation
     evaluation_task = PythonOperator(
         task_id='evaluation_task',
-        python_callable=lambda: "Offline evaluation logic (WER, BLEU, MOS)",
+        python_callable=evaluation_callable,
     )
 
     # Task to save metadata
     save_results_task = PythonOperator(
         task_id='save_results_task',
-        python_callable=lambda: "Metadata and statistics saved to Cloud SQL",
+        python_callable=save_results_callable,
     )
 
     # Set task dependencies
