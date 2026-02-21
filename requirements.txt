@@ -1,0 +1,33 @@
+# Core HTTP & Data Downloading
+requests>=2.31.0
+tqdm>=4.66.0
+boto3>=1.34.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# Hugging Face
+datasets>=2.19.0
+huggingface-hub>=0.23.0
+transformers>=4.40.0
+
+# Audio Processing
+librosa>=0.10.1
+soundfile>=0.12.1
+audioread>=3.0.1
+
+# Numerical & Scientific
+numpy>=1.26.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Jupyter / Notebook support
+ipykernel>=6.29.0
+ipywidgets>=8.1.0
+
+# GCP / DVC
+dvc>=3.0.0
+dvc-gs>=3.0.0
+google-cloud-storage>=2.10.0
