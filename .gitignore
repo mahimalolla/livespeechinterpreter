@@ -1,2 +1,27 @@
 .env
 .idea/
+.data/
+
+# Data (large - use DVC for versioned data)
+data/
+
+# Virtual environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Airflow
+airflow_home/
+logs/
+
+# Build / generated
+*.log
+*.html
+
+# OS
+.DS_Store

@@ -1,0 +1,18 @@
+# Pipeline dependencies for the Airflow Docker image
+# Note: TFDV (pyarrow<11) conflicts with datasets (pyarrow>=12). Dockerfile
+# installs TFDV first, then these deps. Pip may show warnings; pipeline runs.
+
+# HuggingFace (acquire_opus, acquire_domain_data)
+datasets>=2.19.0
+huggingface-hub>=0.23.0
+transformers>=4.40.0
+
+# Data Processing (preprocess scripts)
+python-dotenv>=1.0.0
+
+# Audio (acquire_librispeech, preprocess_audio)
+requests>=2.31.0
+tqdm>=4.66.0
+librosa>=0.10.1
+soundfile>=0.12.1
+audioread>=3.0.1

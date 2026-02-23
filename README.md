@@ -1,378 +1,234 @@
-Live Speech Interpreter
-===========================
+# Live Speech Interpreter
 
-**Real-Time Speech-to-Speech Translation System (EN ↔ ES)**\
-*MLOps Production Pipeline Project -- Team 5*
+**Real-Time Speech-to-Speech Translation System (EN ↔ ES)**  
+*MLOps Production Pipeline Project — Team 5*
 
-* * * * *
+---
 
-Overview
------------
+## 1 Overview
 
-Live Speech Interpreter is a **production-grade, real-time speech-to-speech translation system** that converts spoken English to spoken Spanish (and vice versa) using a cascaded ML architecture:
+End-to-end data pipeline for the **Live Speech Interpreter** project: a real-time speech-to-speech translation system for Spanish ↔ English. The pipeline covers data acquisition, preprocessing, validation (TFDV), **data slicing for bias detection**, versioning (DVC), and workflow orchestration via Apache Airflow.
 
-ASR (Speech → Text) → NMT (Text → Text) → TTS (Text → Speech)
+This pipeline prepares training data for:
+- **ASR (Automatic Speech Recognition)**: LibriSpeech audio → mel spectrograms
+- **NMT (Neural Machine Translation)**: OPUS-100 + domain-specific en–es parallel text
 
-We selected English–Spanish as the initial language pair because Spanish is one of the most widely spoken languages in the world, with over 500 million speakers globally and significant usage across the United States. In public-sector, healthcare, education, and civic environments, English–Spanish communication gaps are among the most common real-world translation challenges. For the scope of this course project, we intentionally limited our implementation to a single language pair to ensure depth in model optimization, latency engineering, monitoring, and MLOps infrastructure rather than breadth across many languages. In future expansions, the architecture is designed to support additional language pairs (e.g., French, Mandarin) with minimal structural changes, enabling scalable multilingual deployment.
+**Pipeline summary:**
+- **Data Acquisition:** OPUS-100 (100k pairs), LibriSpeech (train-clean-100), medical/federal domain data
+- **Preprocessing:** Audio (trim, resample 16 kHz, mel spectrograms); NMT (dedup, HTML removal, length filter, Gemma tokenization)
+- **Validation:** TFDV for schema, statistics, anomaly detection
+- **Bias Detection:** Data slicing by domain (NMT) and text length (ASR); imbalance detection and mitigation recommendations
+- **Orchestration:** Apache Airflow with 11 tasks
 
-The system is designed with a full **MLOps lifecycle**, including:
+---
 
--   Data Versioning (DVC)
+## 2 Environment Setup
 
--   Workflow Orchestration (Airflow)
+### Prerequisites
 
--   Model Validation (Great Expectations)
+- Python 3.10+
+- Docker (for running Airflow)
+- Git
 
--   Bias & Fairness Analysis (Fairlearn)
+### Local Development
 
--   CI/CD Automation
-
--   Monitoring & Drift Detection
-
--   Cloud Deployment (GCP)
-
-* * * * *
-
-System Architecture
------------------------
-
-### 🔹 ML Pipeline Components
-
-| Stage | Model | Purpose |
-| --- | --- | --- |
-| ASR | Conformer / Wav2Vec2 | Speech → English text |
-| NMT | T5 / mT5 | English ↔ Spanish translation |
-| TTS | Tacotron2 / FastSpeech2 / VITS | Spanish text → Speech |
-
-* * * * *
-
-### 🔹 MLOps Stack
-
--   **Cloud:** Google Cloud Platform (GKE, Vertex AI, Cloud Storage)
-
--   **Containerization:** Docker
-
--   **CI/CD:** GitHub Actions
-
--   **Orchestration:** Apache Airflow
-
--   **Data Versioning:** DVC
-
--   **Model Tracking:** MLflow
-
--   **Validation:** Great Expectations
-
--   **Bias Detection:** Fairlearn
-
--   **Monitoring:** Cloud Monitoring + Logging
-
-* * * * *
-
-Project Structure
---------------------
-
-project/\
-├── dags/                     # Airflow DAGs\
-├── scripts/\
-│   ├── data/                 # Data acquisition & preprocessing\
-│   ├── validate/             # Great Expectations validation\
-│   ├── bias/                 # Bias analysis (Fairlearn)\
-│   ├── models/               # Model training & inference\
-│   └── langchain_pipeline.py # LLM-based translation helper\
-├── tests/                    # Pytest unit tests\
-├── dvc.yaml                  # DVC pipeline stages\
-├── docker-compose.yml        # Airflow local deployment\
-├── requirements.txt\
-└── README.md
-
-* * * * *
-
-Setup Instructions
----------------------
-
-### 1️⃣ Clone Repository
-
-git clone https://github.com/mahimalolla/livespeechinterpreter.git\
+```bash
+# Clone the repository
+git clone https://github.com/mahimalolla/livespeechinterpreter.git
 cd livespeechinterpreter
 
-* * * * *
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-### 2️⃣ Create Virtual Environment
-
-python -m venv venv\
-source venv/bin/activate  # Mac/Linux\
-venv\Scripts\activate     # Windows
-
-* * * * *
-
-### 3️⃣ Install Dependencies
-
+# Install dependencies
 pip install -r requirements.txt
 
-* * * * *
+# Create .env file with Hugging Face token (required for NMT preprocessing)
+echo "HF_TOKEN=your_huggingface_token" > .env
+```
+
+### Docker (Recommended for Full Pipeline)
+
+The pipeline runs in a custom Airflow Docker image that includes TFDV, Hugging Face `datasets`, `transformers`, `librosa`, and other dependencies.
+
+```bash
+# Build the image (use --platform linux/amd64 on Apple Silicon)
+docker build --platform linux/amd64 -t live-speech-airflow:latest .
+
+# Ensure .env exists with HF_TOKEN
+echo "HF_TOKEN=your_huggingface_token" > .env
+```
+
+---
+
+## 3 Steps to Run the Pipeline
+
+### Option A: Via Airflow (Recommended)
+
+```bash
+# Run Airflow with project mounted
+docker run -d \
+  --platform linux/amd64 \
+  --name airflow \
+  -p 8080:8080 \
+  -v "$(pwd)/dags:/opt/airflow/dags" \
+  -v "$(pwd)/scripts:/opt/airflow/scripts" \
+  -v "$(pwd)/data:/opt/airflow/data" \
+  -v "$(pwd)/.env:/opt/airflow/.env" \
+  -e AIRFLOW__CORE__LOAD_EXAMPLES=false \
+  live-speech-airflow:latest standalone
+```
+
+1. Wait ~1 minute, then open **http://localhost:8080**
+2. Get the admin password:  
+   `docker exec airflow cat /opt/airflow/standalone_admin_password.txt`
+3. Log in (username: `admin`, password from step 2)
+4. Open the `live_speech_interpreter_pipeline` DAG → **Trigger DAG**
+
+### Option B: Run Scripts Manually
+
+```bash
+# From project root (with venv activated)
+python scripts/acquire/acquire_opus.py
+python scripts/acquire/acquire_domain_data.py
+python scripts/acquire/acquire_librispeech.py   # ~45–90 min first run
+
+python scripts/pre_process/preprocess_nmt.py
+python scripts/pre_process/preprocess_audio.py
+
+python scripts/validation/validate_nmt.py
+python scripts/validation/validate_asr.py
+python scripts/bias/run_bias_analysis.py
+```
+
+---
+
+## 4 Code Structure
+
+### Folder Structure
+
+```
+livespeechinterpreter/
+├── dags/
+│   └── airflow_live_speech_interpreter.py   # Airflow DAG (11 tasks)
+├── data/
+│   ├── raw/
+│   │   ├── librispeech/                     # LibriSpeech parquet
+│   │   ├── opus/                            # OPUS-100 parquet
+│   │   └── domain_data/                     # Domain-specific parquet
+│   ├── processed/
+│   │   ├── asr_processed.parquet
+│   │   └── nmt_processed.parquet
+│   └── validation/
+│       ├── nmt/                             # TFDV stats, schema, anomalies
+│       ├── asr/                             # TFDV stats, schema, spectrogram stats
+│       └── bias/                            # Data slicing reports
+├── docs/
+│   └── BIAS_MITIGATION.md                   # Bias detection & mitigation process
+├── scripts/
+│   ├── acquire/
+│   │   ├── acquire_opus.py
+│   │   ├── acquire_librispeech.py
+│   │   └── acquire_domain_data.py
+│   ├── pre_process/
+│   │   ├── preprocess_audio.py              # AudioPreprocessor class
+│   │   └── preprocess_nmt.py               # NMTPreprocessor class
+│   ├── validation/
+│   │   ├── validate_nmt.py                 # TFDV for NMT
+│   │   └── validate_asr.py                 # TFDV for ASR
+│   ├── bias/
+│   │   ├── data_slicing.py                 # SliceFinder-style bias analysis
+│   │   └── run_bias_analysis.py            # Bias analysis entry point
+│   └── tests/
+│       ├── test_nmt.py
+│       ├── test_audio.py
+│       └── test_bias.py
+├── .env                                     # HF_TOKEN (gitignored)
+├── Dockerfile
+├── requirements.txt
+├── requirements-docker.txt
+├── processed.dvc                             # DVC pointer for data/processed
+└── README.md
+```
 
-Data Versioning (DVC)
-------------------------
+### Component Overview
 
-### Initialize DVC
+| Component | Scripts | Description |
+|-----------|---------|-------------|
+| **Data Acquisition** | `acquire_opus.py`, `acquire_librispeech.py`, `acquire_domain_data.py` | Fetch data from HuggingFace, OpenSLR, OPUS backend |
+| **Preprocessing** | `preprocess_audio.py`, `preprocess_nmt.py` | Modular `AudioPreprocessor` and `NMTPreprocessor` classes |
+| **Validation** | `validate_nmt.py`, `validate_asr.py` | TFDV schema, stats, anomaly detection |
+| **Bias Detection** | `data_slicing.py`, `run_bias_analysis.py` | Data slicing by domain/text length; imbalance flags; mitigation recommendations |
+| **Tests** | `test_nmt.py`, `test_audio.py`, `test_bias.py` | Unit tests for preprocessing and bias logic |
 
-dvc init
+---
 
-### Add Remote (Example: GCS)
+## 5 Reproducibility & Data Versioning (DVC)
 
-dvc remote add -d gcsremote gs://your-bucket-name
+### DVC Setup
 
-### Run Full Pipeline
+- `processed.dvc` tracks `data/processed/` (ASR and NMT processed parquet files)
+- Git tracks `.dvc` files; actual data is stored remotely (e.g., Google Cloud Storage)
+- At pipeline start, `dvc_pull_task` runs `dvc pull` to restore processed data (skips if DVC is not initialized)
 
-dvc repro
+### Reproducibility Steps
 
-Pipeline stages:
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Create `.env` with `HF_TOKEN=<your_token>` for Gemma tokenizer
+4. Run via Airflow (Docker) or execute scripts in order (see Section 3)
+5. For preprocessed data without re-running acquisition: `dvc pull` (if DVC is configured)
 
--   `acquire_data`
+---
 
--   `preprocess_data`
+## 6 Data Bias Detection Using Data Slicing
 
--   `validate_data`
+### Detecting Bias
 
--   `bias_analysis`
+- **NMT:** Sliced by `domain` (general, medical, federal) and `length_bin` (short/medium/long)
+- **ASR:** Sliced by `text_length_bin` (short/medium/long utterances)
+- **Rules:** Representation bias (< 5%), dominance bias (> 95%), skew bias (max/min ratio > 10×)
 
-* * * * *
+### Implementation
 
-Workflow Orchestration (Airflow)
------------------------------------
+- SliceFinder-style slicing in `scripts/bias/data_slicing.py` (data-level analysis before training)
+- Outputs: `data/validation/bias/nmt_bias_report.json`, `asr_bias_report.json`
+- Integrated into Airflow as `bias_analysis_task` (runs after validation)
 
-### Run Locally with Docker
+### Mitigation
 
-docker-compose up
+- Re-sampling underrepresented slices; importance weighting
+- Fairness constraints (Fairlearn/TFMA) once a model exists
+- See `docs/BIAS_MITIGATION.md` for full process and trade-offs
 
-Access Airflow UI:
+---
 
-http://localhost:8080
+## 7 Tracking, Logging & Error Handling
 
-DAG includes:
+- **Python logging:** All scripts use `logging.basicConfig` with timestamps and levels
+- **Airflow:** Task logs capture script path, stdout, stderr, exit code
+- **Error handling:** Scripts raise on failure; Airflow marks tasks as failed; DVC pull skips gracefully when not initialized
+- **Anomaly detection:** TFDV anomaly reports saved as JSON/txt in `data/validation/`
 
--   DVC pull
+---
 
--   Data acquisition
+## 8 Additional Documentation
 
--   Preprocessing
+- **DATA_PIPELINE_SUBMISSION.md** — Full pipeline description and diagrams
+- **docs/BIAS_MITIGATION.md** — Bias detection steps, mitigation techniques, and trade-offs
 
--   Great Expectations validation
+---
 
--   Bias analysis
+## Team 5
 
--   Slack alert on failure (optional)
+- Mahima Lolla
+- Suchitra Hole
+- Afrah Fathima Shahabuddin
+- Balaji Sundar Anand Babu
+- Henil Patel
+- Rajiv Praveen
 
-* * * * *
+---
 
-Data Validation 
---------------------------------------
-
-We validate:
-
--   No null translations
-
--   Source & target length ratio (0.5--2.0)
-
--   Language consistency
-
--   No duplicate rows
-
--   Minimum text length
-
-Run manually:
-
-python scripts/validate/run_ge_validation.py
-
-Validation report is generated in JSON format.
-
-* * * * *
-
-Bias & Fairness Analysis
----------------------------
-
-We perform domain and length-based slicing using **Fairlearn MetricFrame**.
-
-Slicing dimensions:
-
--   Domain: medical, legal, casual
-
--   Sentence length buckets: short, medium, long
-
-Metrics:
-
--   BLEU Score
-
--   Translation Error Rate
-
--   Accuracy by slice
-
-Run manually:
-
-python scripts/bias/bias_analysis.py
-
-* * * * *
-
- Optimization Strategy
-------------------------
-
-We optimize for **RECALL**.
-
-### Why?
-
-In legal and medical environments:
-
--    Missing a statement (False Negative) → Critical harm
-
--    Extra translation (False Positive) → Minor inconvenience
-
-Tradeoff:\
-We accept occasional background noise translations to ensure no important content is missed.
-
-* * * * *
-
- Key Performance Metrics
---------------------------
-
-### Model Metrics
-
--   **ASR Word Error Rate (WER):** < 12%
-
--   **NMT BLEU Score:** > 35
-
--   **TTS MOS:** > 3.5
-
-### System Metrics
-
--   **End-to-End Latency:** < 3 seconds
-
--   **P95 Latency:** < 3s
-
--   **System Uptime:** 99.9%
-
--   **Concurrent Sessions:** 100+
-
-* * * * *
-
- Monitoring & Drift Detection
--------------------------------
-
-We monitor:
-
--   ASR confidence score trends
-
--   Translation correction rate
-
--   Latency breakdown (ASR/NMT/TTS)
-
--   GPU utilization
-
--   Model drift via distribution comparison
-
--   Budget usage alerts
-
-Alerting:
-
--    P1: Latency > 5s
-
--    P2: Error rate > 1%
-
--    Cost > 80% of monthly budget
-
-* * * * *
-
- Testing
-----------
-
-Run tests:
-
-pytest
-
-Includes:
-
--   Data validation checks
-
--   Bias slicing tests
-
--   Pipeline integrity tests
-
--   Schema validation tests
-
-* * * * *
-
- Security
------------
-
--   TLS 1.3 encryption
-
--   Encrypted storage (GCP KMS)
-
--   IAM-based access control
-
--   No persistent audio storage without user consent
-
-* * * * *
-
- Project Timeline
---------------------
-
-| Phase | Deliverable |
-| --- | --- |
-| Phase 1 | Infrastructure + Data Setup |
-| Phase 2 | Model Fine-Tuning |
-| Phase 3 | Integration + Optimization |
-| Phase 4 | Deployment + Monitoring |
-
-* * * * *
-
- Acceptance Criteria
-----------------------
-
--   Fully automated CI/CD pipeline
-
--   Infrastructure deployable via Terraform
-
--   End-to-end system demo under 3 seconds latency
-
--   Real-time speech translation working in browser
-
--   Monitoring dashboards active
-
-* * * * *
-
-👥 Team 5
----------
-
--   Mahima Lolla
-
--   Suchitra Hole
-
--   Afrah Fathima Shahabuddin
-
--   Balaji Sundar Anand Babu
-
--   Henil Patel
-
--   Rajiv Praveen
-
-* * * * *
-
- Future Improvements
-----------------------
-
--   Speaker diarization
-
--   Direct speech-to-speech model (SeamlessM4T)
-
--   Voice cloning
-
--   Multi-language expansion (FR, Mandarin)
-
--   Simultaneous translation (wait-k policy)
-
-* * * * *
-
- License
-----------
-
-Educational use for MLOps coursework.
+*Educational use for MLOps coursework.*
