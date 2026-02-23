@@ -61,7 +61,7 @@ def process_to_parquet(extract_dir, base_dir):
     # The actual data is nested inside LibriSpeech/train-clean-100
     data_path = os.path.join(extract_dir, "LibriSpeech", "train-clean-100")
 
-    batch_size = 1000
+    batch_size = 200  # Reduced for Docker memory limits; 1000 caused OOM
     batch = []
     writer = None
     total_processed = 0
@@ -124,5 +124,8 @@ def process_to_parquet(extract_dir, base_dir):
 
 
 if __name__ == "__main__":
-    extracted_path = download_and_extract_librispeech()
-    process_to_parquet(extracted_path, base_dir="../../data/raw/librispeech")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, "..", ".."))
+    base = os.path.join(project_root, "data", "raw", "librispeech")
+    extracted_path = download_and_extract_librispeech(base_dir=base)
+    process_to_parquet(extracted_path, base_dir=base)
