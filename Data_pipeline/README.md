@@ -468,8 +468,8 @@ Both branches must complete before `evaluation_task` starts.
 |-----------|-------|--------|
 | `schedule_interval` | `None` | Triggered manually via UI or CLI |
 | `catchup` | `False` | Do not backfill missed runs |
-| `retries` | `1` | Retry once automatically on failure |
-| `retry_delay` | `5 minutes` | Wait 5 minutes before retrying |
+| `retries` | `3` | Retry three times automatically on failure |
+| `retry_delay` | `5 minute` | Wait 5 minutes before retrying |
 | `email_on_failure` | `True` | Alert team when task fails |
 | `email_on_retry` | `False` | No alert on retry, only on final failure |
 | `owner` | `Henil` | Task owner for accountability |
