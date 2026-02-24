@@ -16,12 +16,10 @@ BASE_DIR = os.path.join(PROJECT_ROOT, 'scripts')
 
 def run_script(script_path):
     """Runs a Python script as a subprocess with full debug output."""
-    logger.info("=" * 60)
     logger.info(f"[DEBUG] Starting script: {script_path}")
     logger.info(f"[DEBUG] Project root: {PROJECT_ROOT}")
     logger.info(f"[DEBUG] Python executable: {sys.executable}")
     logger.info(f"[DEBUG] Script exists: {os.path.exists(script_path)}")
-    logger.info("=" * 60)
 
     start_time = time.time()
 
@@ -158,12 +156,13 @@ def save_results_callable():
 
 
 default_args = {
-    'owner': 'Henil',
+    'owner': 'Team5',
     'start_date': datetime(2026, 2, 19),
-    'retries': 0,
+    'retries': 2,
     'retry_delay': timedelta(minutes=1),
-    'email_on_failure': False,
+    'email_on_failure': True,
     'email_on_retry': False,
+    'email': ['henilpatel2436@gmail.com'],
 }
 
 with DAG(
