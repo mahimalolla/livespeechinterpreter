@@ -229,9 +229,7 @@ conda activate airflow-pipeline
 ```
  
 # 3. Setup Airflow
-```bash
-The instructions to setup Airflw using Dokcer are mentioned here.
-```
+The instructions to setup Airflow using Dokcer are mentioned [here](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html)
  
 # 4. Install dependencies
 ```bash
@@ -273,14 +271,14 @@ d. Update the following in docker-compose.yml
 AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
  
 # Additional python package
-_PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pandas }
+_PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- add required libraries to be installed }
  
 # Output dir
 - ${AIRFLOW_PROJ_DIR:-.}/working_data:/opt/airflow/working_data
  
 # Change default admin credentials
-_AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow2}
-_AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow2}
+_AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-new_username}
+_AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-new_password}
 ```
  
 e. Initialize the database
