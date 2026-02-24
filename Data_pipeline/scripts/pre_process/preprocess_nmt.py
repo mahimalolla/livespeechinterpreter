@@ -109,6 +109,14 @@ def main():
     df_opus = pd.read_parquet(opus_file)
     df_domain = pd.read_parquet(domain_file)
 
+    # Assign domain for bias slicing: OPUS = general, domain_data = medical/federal
+    if "domain" not in df_opus.columns:
+        df_opus = df_opus.copy()
+        df_opus["domain"] = "general"
+    if "domain" not in df_domain.columns:
+        df_domain = df_domain.copy()
+        df_domain["domain"] = "unknown"
+
     # Merge the OPUS and Domain data together into one big dataset
     df = pd.concat([df_opus, df_domain], ignore_index=True)
     logging.info(f"Total raw pairs combined: {len(df)}")
