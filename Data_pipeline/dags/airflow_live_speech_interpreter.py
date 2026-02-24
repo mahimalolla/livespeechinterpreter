@@ -158,8 +158,8 @@ def save_results_callable():
 default_args = {
     'owner': 'Team5',
     'start_date': datetime(2026, 2, 19),
-    'retries': 2,
-    'retry_delay': timedelta(minutes=1),
+    'retries': 3,
+    'retry_delay': timedelta(minutes=5),
     'email_on_failure': True,
     'email_on_retry': False,
     'email': ['henilpatel2436@gmail.com'],
