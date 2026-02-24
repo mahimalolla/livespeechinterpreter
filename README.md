@@ -8,7 +8,7 @@ Live Interpreter is a real-time **speech-to-speech translation system** that ena
 
 The system converts spoken language into translated speech with low latency, making multilingual conversations accessible in civic, public-sector, healthcare, and everyday settings.
 
-Built entirely using **Google Cloud technologies**, Voxlate focuses on:
+Built entirely using **Google Cloud technologies**, our product focuses on:
 
 -   Real-time streaming architecture
 
