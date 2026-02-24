@@ -48,9 +48,15 @@ Make sure the following are installed on your machine before starting:
  
 - [Git](https://git-scm.com/)
 - [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) (for DVC remote access)
- 
+- [DVC] 
+Installation commands :
+```bash
+conda activate airflow-pipeline
+pip install "dvc[gs]"
+```
+
 ---
- 
+
 ### Step 1 — Clone the Repository
  
 ```bash
