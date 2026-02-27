@@ -48,8 +48,7 @@ Make sure the following are installed on your machine before starting:
  
 - [Git](https://git-scm.com/)
 - [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) (for DVC remote access)
-- [DVC] 
-Installation commands :
+- DVC Installation commands :
 ```bash
 conda activate airflow-pipeline
 pip install "dvc[gs]"
@@ -263,37 +262,24 @@ b. Fetch [docker-compose.yaml](https://airflow.apache.org/docs/apache-airflow/2.
 curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.5.1/docker-compose.yaml'
 ```
  
-c. Setting the right Airflow user
- 
-```bash
-mkdir -p ./dags ./logs ./plugins ./working_data
-echo -e "AIRFLOW_UID=$(id -u)" > .env
-```
- 
-d. Update the following in docker-compose.yml
+c. Update the following in docker-compose.yml
  
 ```bash
 # Do not load examples
 AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
- 
-# Additional python package
-_PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- add required libraries to be installed }
- 
-# Output dir
-- ${AIRFLOW_PROJ_DIR:-.}/working_data:/opt/airflow/working_data
  
 # Change default admin credentials
 _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-new_username}
 _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-new_password}
 ```
  
-e. Initialize the database
+d. Initialize the database
  
 ```bash
 docker compose up airflow-init
 ```
  
-f. Running Airflow
+e. Running Airflow
  
 ```bash
 docker compose up
@@ -303,9 +289,9 @@ Wait until terminal outputs
  
 `app-airflow-webserver-1  | 127.0.0.1 - - [17/Feb/2023:09:34:29 +0000] "GET /health HTTP/1.1" 200 141 "-" "curl/7.74.0"`
  
-g. Enable port forwarding
+f. Enable port forwarding
  
-h. Visit `localhost:8080` login with credentials set on step `2.d`
+g. Visit `localhost:8080` login with credentials set on step `c`
  
 ---
  
@@ -440,25 +426,28 @@ default_args = {
 ## 6. Pipeline DAG Flow
  
 ```
-dvc_pull_task
-(fetch data from GCP bucket via DVC)
-      ↓
-┌─────┴──────────────────────────────┐
-↓                                    ↓
-acquire_opus_task           acquire_librispeech_task
-(OPUS EN-ES text corpus)    (LibriSpeech English audio)
-↓                                    ↓
-acquire_domain_data_task    preprocess_audio_task
-(domain specific data)      (normalize audio + transcripts)
-↓                                    ↓
-preprocess_nmt_task                  │
-(clean EN-ES text pairs)             │
-└──────────────┬──────────────────────┘
-               ↓
-         evaluation_task
-               ↓
-         save_results_task
-         (save stats to Cloud SQL + GCS)
+[dvc_pull_task]
+         (Fetch data from GCP via DVC)
+                      │
+          ┌───────────┴───────────┐
+          ▼                       ▼
+ [acquire_opus_task]    [acquire_librispeech_task]
+   (EN-ES Corpus)           (English Audio)
+          │                       │
+ [acquire_domain_data]  [preprocess_audio_task]
+          │             (Normalize & Transcript)
+          ▼                       ▼
+ [preprocess_nmt_task]   [validate_asr_task]
+   (Clean text pairs)             │
+          │                       │
+  [validate_nmt_task]             │
+          └───────────┬───────────┘
+                      ▼
+            [bias_analysis_task]
+                      │
+              [evaluation_task]
+                      │
+             [save_results_task]
 ```
  
 **Left branch** (text/NMT) and **right branch** (audio/ASR) run in parallel.
