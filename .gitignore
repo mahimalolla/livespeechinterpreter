@@ -1,0 +1,24 @@
+# Python
+mlops_env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Data (tracked by DVC, not Git)
+data/raw/
+data/processed/
+
+# Logs
+logs/
+
+# Airflow
+airflow.db
+airflow.cfg
+
+# Environment
+.env
+
+# OS
+.DS_Store
+gcp-key.json
