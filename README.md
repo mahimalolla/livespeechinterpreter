@@ -1,233 +1,261 @@
-* * * * *
- 
-Live Interpreter
-==============================
- 
-Live Interpreter is a real-time **speech-to-speech translation system** that enables live, bidirectional communication between **Spanish and English** speakers, backed by an MLOps **offline→online** pipeline.
- 
-The system converts spoken language into translated speech with low latency and provides an end-to-end workflow to **build, validate, version, and serve** bilingual translation data/models.
- 
-This repository includes:
- 
--   Offline data pipeline orchestration (Airflow DAG + Python nodes)
- 
--   Dataset QA (schema, stats, anomaly checks, slicing, approval gate)
- 
--   Cloud storage integration (uploading approved artifacts to GCS)
- 
--   Online inference service (FastAPI translation API with BigQuery logging)
- 
--   Live speech client (Google STT → translation API → Google TTS)
- 
-* * * * *
- 
-Why English--Spanish?
------------------------
- 
-We selected **English--Spanish** as the initial language pair because Spanish is one of the most widely spoken languages globally and is highly relevant in U.S. public-sector and community settings. English--Spanish translation represents one of the most common real-world communication gaps in healthcare, education, and civic engagement environments.
- 
-For the scope of this course project, we intentionally focused on a single language pair to prioritize depth in streaming architecture, monitoring, latency optimization, and MLOps infrastructure. The system is architected to support additional languages in future expansions (e.g., French, Mandarin) with minimal structural changes.
- 
-* * * * *
- 
-Key Features
----------------
- 
--    **Offline Data Pipeline (Airflow)**
- 
--    **Dataset preprocessing into instruction format (EN↔ES, domain-aware)**
- 
--    **Train/Val/Test splitting + dataset approval gate**
- 
--    **Schema + statistics reporting and anomaly detection**
- 
--    **Dataset slicing (domain, direction, sentence length)**
- 
--    **Upload approved artifacts to Google Cloud Storage (GCS)**
- 
--    **Trigger payload generation for downstream/online steps**
- 
--    **Online Translation API (FastAPI)**
- 
--    **BigQuery inference logging (latency, lengths, direction, domain)**
- 
--    **Live speech-to-speech demo (Google STT + TTS)**
- 
-* * * * *
- 
-System Architecture
------------------------
- 
+#  Live Interpreter --- End-to-End MLOps Translation System
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)\
+![FastAPI](https://img.shields.io/badge/FastAPI-API-green)\
+![GCP](https://img.shields.io/badge/GCP-Cloud-orange)\
+![MLOps](https://img.shields.io/badge/MLOps-End--to--End-purple)\
+![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen)
+
+---
+
+##  Overview
+
+**Live Interpreter** is a real-time **speech-to-speech translation system (English ↔ Spanish)** built with a **production-grade MLOps pipeline**.
+
+It enables seamless bilingual communication in **medical and legal domains** using:
+
+- 🎤 Speech-to-Text (Google STT)\
+- 🤖 Fine-tuned LLM (Gemma 3 4B with QLoRA)\
+- 🔊 Text-to-Speech (Google TTS)
+
+---
+
+##  End-to-End Pipeline
+
+Mic → Google STT → FastAPI (/translate) → Fine-tuned LLM → Google TTS → Speaker\
+---
+
+##  System Architecture
+
+### 🔹 Offline Pipeline (Airflow + Docker)
+
+- Dataset ingestion (OPUS-100, EuroParl)\
+- Data preprocessing & instruction formatting\
+- Train/Val/Test split (80/10/10)\
+- Schema validation (TFDV)\
+- Anomaly detection\
+- Dataset slicing (domain, direction, sentence length)\
+- Bias detection across slices\
+- Dataset approval gate\
+- Upload to GCS + DVC versioning
+
+---
+
+### 🔹 Model Training (Vertex AI)
+
+- Model: **Gemma 3 4B**\
+- Fine-tuning: **QLoRA (4-bit quantization)**\
+- Training data: **2.1M EN↔ES sentence pairs**\
+- Adapter size: **131MB**
+
+#### Model Selection Criteria\
+- BLEU score ≥ 25\
+- Bias deviation < 30%
+
+---
+
+### 🔹 Online Inference (FastAPI + Cloud Run)
+
+- `/translate` endpoint (domain-aware translation)\
+- Async model loading\
+- CPU-based inference (Cloud Run)\
+- Logging to BigQuery:\
+  - latency\
+  - input/output length\
+  - domain\
+  - translation direction
+
+---
+
+### 🔹 CI/CD Pipeline (Cloud Build)
+
+Triggered automatically on every GitHub push:
+
+- Code linting & tests\
+- Model evaluation\
+- Bias detection\
+- Conditional deployment\
+- Logging to BigQuery
+
+---
+
+##  Key Features
+
+-  **End-to-End MLOps Pipeline** (data → training → deployment → monitoring)\
+-  **Automated CI/CD with evaluation gates**\
+-  **Bias-aware model selection**\
+-  **Experiment tracking with MLflow**\
+-  **Fully deployed on Google Cloud Platform**\
+-  **LLM fine-tuning with QLoRA**\
+-  **Real-time inference with FastAPI**\
+-  **Containerized architecture (Docker)**\
+-  **Dataset validation + anomaly detection**\
+-  **BigQuery-based monitoring + logging**
+
+---
+
+##  Model Validation & Evaluation
+
+### Evaluation Metrics\
+- BLEU score\
+- Latency\
+- Output length consistency
+
+### Dataset QA\
+- Schema validation\
+- Statistical profiling\
+- Anomaly detection
+
+### Slice-Based Evaluation\
+- Medical vs Legal domain\
+- Short vs Long sentences\
+- EN → ES vs ES → EN
+
+---
+
+###  Deployment Gates
+
+Model deployment is blocked if:\
+- BLEU score < 25\
+- Bias deviation > 30%
+
+---
+
+##  Bias Detection & Mitigation
+
+### Slices Evaluated\
+- Medical vs Legal\
+- Short vs Long sentences\
+- Translation direction (EN↔ES)
+
+### Key Findings\
+- Legal data underrepresented\
+- Sentence length imbalance
+
+### Mitigation Strategies\
+- Oversampling legal dataset\
+- Length-stratified sampling\
+- Increased sequence length
+
+---
+
+##  Experiment Tracking
+
+- Tool: **MLflow (deployed on Cloud Run)**
+
+### Logged Data\
+- Hyperparameters\
+- Training loss\
+- Evaluation metrics\
+- Sensitivity analysis
+
+---
+
+##  Sensitivity Analysis
+
+### Performed On\
+- Feature impact (length, domain, direction)\
+- Hyperparameter tuning effects
+
+### Insights\
+- Sequence length significantly impacts translation quality\
+- Domain imbalance affects BLEU performance
+
+---
+
+##  Tech Stack
+
+| Layer | Technology |\
+|------|------------|\
+| Orchestration | Airflow (Docker) |\
+| Data Versioning | DVC + GCS |\
+| Training | Vertex AI |\
+| Model | Gemma 3 4B (QLoRA) |\
+| API | FastAPI |\
+| Deployment | Cloud Run |\
+| CI/CD | Cloud Build |\
+| Tracking | MLflow |\
+| Monitoring | BigQuery |
+
+---
+
+##  Use Cases
+
+- Healthcare communication\
+-  Legal interpretation\
+-  Education & public services\
+-  Accessibility tools\
+-  Multilingual interfaces
+
+---
+
+##  Running the System
+
+### 🔹 Offline Pipeline (Airflow)
+
+```bash\
+docker compose up -d
+
+-   Airflow UI: <http://localhost:8080>
+-   DAG: `offline_translation_pipeline`
 ```
-Offline (Airflow DAG: `offline_translation_pipeline`)
-  1) Download datasets (HF) → `data/raw/*.jsonl` + manifest
-  2) Preprocess + instruction formatting → `data/processed/dataset.jsonl`
-  3) Split train/val/test → `data/processed/{train,val,test}.jsonl`
-  4) Stats + schema reports → `reports/tfdv_stats_summary.json`, `reports/schema.json`
-  5) Schema load (confirmation step)
-  6) Anomaly detection (fails DAG if issues) → `reports/anomalies.json`
-  7) Dataset slicing → `data/processed/slices/*.jsonl`
-  8) Dataset approval gate → `reports/dataset_approval.json`
-  9) Upload approved artifacts to GCS
-  10) Write trigger payload for downstream online pipeline → `reports/trigger_payload.json`
- 
-Online (serving + demo)
-  FastAPI translation service (Gemma 3 4B + LoRA adapter from GCS) → `/translate`
-  BigQuery logs for requests/responses/latency
-  Live speech client: Microphone → Google STT → API translate → Google TTS
- 
+* * * * *
+
+### 🔹 API (Hosted)
+
+GET /health\
+POST /translate
+
+Example:
 ```
- 
-The system is designed so the offline pipeline produces validated/versioned artifacts and the online services consume those artifacts for low-latency translation and monitoring.
- 
+curl -X POST https://<your-api>/translate \\
+-H "Content-Type: application/json" \\
+-d '{"text":"Hello","direction":"en_to_es","domain":"medical"}'
+```
 * * * * *
- 
- 
- 
- 
- 
- 
-Evaluation & Benchmarking
-----------------------------
- 
-This repo focuses on **system-level validation and monitoring** around translation data and serving.
- 
-###  Evaluation Strategy
- 
--   Data QA in the offline pipeline:
- 
-    -   Schema + field presence checks (via generated `reports/schema.json`)
- 
-    -   Summary statistics on the training split (`reports/tfdv_stats_summary.json`)
- 
-    -   Anomaly checks on the validation split (length bounds, nulls, invalid labels) via `reports/anomalies.json`
- 
-    -   Dataset slicing to spot gaps by domain, direction, and sentence length
- 
-### Translation Evaluation Strategy
- 
--   Parallel corpora sources used in the offline pipeline:
- 
-    -   `Helsinki-NLP/opus-100` (EN–ES)
- 
-    -   `Helsinki-NLP/europarl` (EN–ES)
- 
--   Serving-time monitoring:
- 
-    -   Per-request latency returned by the API and logged to BigQuery
- 
-### Robustness Testing
- 
--   Live speech demo robustness (runtime):
- 
-    -   Google streaming STT interim/final results
- 
-    -   End-to-end latency visibility in the terminal demo
- 
-    -   Domain + direction switching (`medical` / `legal`, `en_to_es` / `es_to_en`)
- 
+
+### 🔹 Live Speech Demo
+
+Mic → STT → API → TTS
+
 * * * * *
- 
-Metrics to be tracked
-------------------
- 
--   End-to-end latency (speech demo)
- 
--   API latency per request (returned in `/translate`)
- 
--   Dataset health signals (null counts, length stats, label validity)
- 
--   Slice coverage counts (domain/direction/length)
- 
--   BigQuery inference logs (timestamp, domain, direction, lengths, latency)
- 
--   Pipeline pass/fail gates (anomaly detection + approval)
- 
-* * * * *
- 
-Target Use Cases
+
+ Project Structure
 --------------------
- 
--   Public meetings and civic engagement
- 
--   Healthcare intake and front-desk assistance
- 
--   Community centers and education
- 
--   Multilingual service kiosks
- 
--   Accessibility for non-native speakers
- 
+
+.\
+├── dags/                  # Airflow DAGs\
+├── scripts/               # Data + evaluation scripts\
+├── data/                  # Raw + processed datasets\
+├── reports/               # Validation + bias reports\
+├── inference/             # FastAPI service\
+├── training/              # Model training code\
+├── docker-compose.yml     # Orchestration setup\
+├── requirements.txt\
+└── README.md
+
 * * * * *
- 
-Project Focus
-----------------
- 
-This project emphasizes:
- 
--   Offline dataset engineering with orchestration and quality gates
- 
--   Low-friction handoff from offline artifacts → online services
- 
--   Production-minded cloud integration (GCS + BigQuery)
- 
--   Monitoring hooks for inference latency and outputs
- 
--   A practical live demo path (STT → translate → TTS)
- 
+
+ Key Highlights
+-----------------
+
+-    Production-ready MLOps system
+-    Real-time LLM-powered translation
+-    Fully automated pipeline
+-    Bias-aware model selection
+-    Cloud-native deployment
+-    End-to-end monitoring
+
 * * * * *
- 
-Running the Code
--------------------
- 
-This repo supports two main execution paths:
- 
--   Offline pipeline (Airflow): run the 10-node DAG locally via Docker Compose.
- 
--   Online + demo: call the hosted API and/or run the live speech client.
- 
-### Offline Data Pipeline (Airflow)
- 
--   Start services: `docker compose up -d`
- 
--   Airflow UI: `http://localhost:8080` (credentials created by compose: `admin` / `admin`)
- 
--   DAG: `offline_translation_pipeline` in `dags/offline_pipeline.py`
- 
--   Outputs (mounted locally): `data/raw/`, `data/processed/`, `reports/`
- 
-### Online Translation API (Hosted)
- 
-Example hosted endpoint documented in `commands.txt`:
- 
--   Health check: `curl https://translation-api-1050963407386.us-central1.run.app/health`
- 
--   Translate: `curl -X POST https://translation-api-1050963407386.us-central1.run.app/translate ...`
- 
-### Live Speech-to-Speech Demo (Local client)
- 
--   Run `speech_pipeline.py` after ensuring Google credentials are available (the script expects `gcp-key.json` next to it and sets `GOOGLE_APPLICATION_CREDENTIALS` automatically).
- 
--   Configure translation direction/domain inside `speech_pipeline.py`:
- 
-    -   `DIRECTION`: `en_to_es` or `es_to_en`
- 
-    -   `DOMAIN`: `medical` or `legal`
- 
-* * * * *
- 
-Future Enhancements
+
+ Future Enhancements
 ----------------------
- 
--   Multi-language expansion beyond English--Spanish
- 
--   Speaker diarization
- 
--   Simultaneous translation models
- 
--   Direct speech-to-speech architectures
- 
--   Enhanced domain adaptation
- 
-* * * * *
- 
+
+-    Multi-language support (French, Mandarin, etc.)
+-    Speaker diarization
+-    Simultaneous translation (low-latency streaming)
+-    Direct speech-to-speech models
+-    Expanded domain adaptation
+-    Advanced drift detection + auto-retraining
+-    Authentication & rate limiting for API
+-    Frontend UI for real-time interaction
