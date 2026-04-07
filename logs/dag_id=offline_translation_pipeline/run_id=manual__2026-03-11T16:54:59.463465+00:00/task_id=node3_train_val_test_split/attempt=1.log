@@ -1,0 +1,19 @@
+[2026-03-11T16:55:18.063+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T16:55:18.290+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-11T16:54:59.463465+00:00 [queued]>
+[2026-03-11T16:55:18.327+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-11T16:54:59.463465+00:00 [queued]>
+[2026-03-11T16:55:18.329+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-11T16:55:18.398+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node3_train_val_test_split> on 2026-03-11 16:54:59.463465+00:00
+[2026-03-11T16:55:18.404+0000] {standard_task_runner.py:64} INFO - Started process 214 to run task
+[2026-03-11T16:55:18.429+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node3_train_val_test_split', 'manual__2026-03-11T16:54:59.463465+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpzvtvd6sc']
+[2026-03-11T16:55:18.519+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask node3_train_val_test_split
+[2026-03-11T16:55:18.837+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-11T16:54:59.463465+00:00 [running]> on host fb695413c669
+[2026-03-11T16:55:19.282+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node3_train_val_test_split' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T16:54:59.463465+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T16:54:59.463465+00:00'
+[2026-03-11T16:55:19.284+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T16:55:19.307+0000] {logging_mixin.py:188} INFO - Loading dataset.jsonl...
+[2026-03-11T16:55:28.891+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2026-03-11T16:55:28.896+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-03-11T16:55:28.913+0000] {process_utils.py:132} INFO - Sending 15 to group 214. PIDs of all processes in the group: [214]
+[2026-03-11T16:55:28.914+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 214
+[2026-03-11T16:55:28.935+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-11T16:55:28.946+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T16:55:30.740+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=214, status='terminated', exitcode=0, started='16:55:18') (214) terminated with exit code 0

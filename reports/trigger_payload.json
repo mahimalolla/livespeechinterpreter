@@ -1,0 +1,7 @@
+{
+  "gcs_train": "gs://translation-training-data/datasets/v2_approved/train.json",
+  "gcs_val": "gs://translation-training-data/datasets/v2_approved/val.json",
+  "gcs_schema": "gs://translation-training-data/datasets/v2_approved/schema.json",
+  "dataset_version": "v2_approved",
+  "train_records": 2123785
+}

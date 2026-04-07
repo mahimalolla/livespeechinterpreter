@@ -1,0 +1,34 @@
+[2026-03-18T17:35:10.991+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-18T17:35:11.119+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-18T17:30:22.249493+00:00 [queued]>
+[2026-03-18T17:35:11.136+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-18T17:30:22.249493+00:00 [queued]>
+[2026-03-18T17:35:11.137+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-18T17:35:11.169+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node9_upload_to_gcs> on 2026-03-18 17:30:22.249493+00:00
+[2026-03-18T17:35:11.175+0000] {standard_task_runner.py:64} INFO - Started process 311 to run task
+[2026-03-18T17:35:11.179+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node9_upload_to_gcs', 'manual__2026-03-18T17:30:22.249493+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpiormwfip']
+[2026-03-18T17:35:11.182+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask node9_upload_to_gcs
+[2026-03-18T17:35:11.430+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-18T17:30:22.249493+00:00 [running]> on host b3297fa56597
+[2026-03-18T17:35:11.844+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node9_upload_to_gcs' AIRFLOW_CTX_EXECUTION_DATE='2026-03-18T17:30:22.249493+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-18T17:30:22.249493+00:00'
+[2026-03-18T17:35:11.846+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-18T17:35:12.167+0000] {logging_mixin.py:188} INFO - Connecting to GCS bucket: livespeechinterpreter...
+[2026-03-18T17:45:46.225+0000] {logging_mixin.py:188} INFO - Uploaded train.jsonl (766.0MB) → gs://livespeechinterpreter/datasets/v2_approved/train.jsonl
+[2026-03-18T17:46:14.466+0000] {logging_mixin.py:188} INFO - Uploaded val.jsonl (95.9MB) → gs://livespeechinterpreter/datasets/v2_approved/val.jsonl
+[2026-03-18T17:46:37.362+0000] {logging_mixin.py:188} INFO - Uploaded test.jsonl (95.6MB) → gs://livespeechinterpreter/datasets/v2_approved/test.jsonl
+[2026-03-18T17:46:37.630+0000] {logging_mixin.py:188} INFO - Uploaded schema.json (0.0MB) → gs://livespeechinterpreter/datasets/v2_approved/schema.json
+[2026-03-18T17:46:37.858+0000] {logging_mixin.py:188} INFO - Uploaded tfdv_stats_summary.json (0.0MB) → gs://livespeechinterpreter/datasets/v2_approved/tfdv_stats_summary.json
+[2026-03-18T17:46:38.094+0000] {logging_mixin.py:188} INFO - Uploaded anomalies.json (0.0MB) → gs://livespeechinterpreter/datasets/v2_approved/anomalies.json
+[2026-03-18T17:46:38.327+0000] {logging_mixin.py:188} INFO - Uploaded dataset_approval.json (0.0MB) → gs://livespeechinterpreter/datasets/v2_approved/dataset_approval.json
+[2026-03-18T17:46:49.923+0000] {logging_mixin.py:188} INFO - Uploaded en_to_es.jsonl (47.9MB) → gs://livespeechinterpreter/datasets/v2_approved/en_to_es.jsonl
+[2026-03-18T17:47:02.852+0000] {logging_mixin.py:188} INFO - Uploaded legal.jsonl (48.7MB) → gs://livespeechinterpreter/datasets/v2_approved/legal.jsonl
+[2026-03-18T17:47:10.952+0000] {logging_mixin.py:188} INFO - Uploaded short_sents.jsonl (34.6MB) → gs://livespeechinterpreter/datasets/v2_approved/short_sents.jsonl
+[2026-03-18T17:47:22.365+0000] {logging_mixin.py:188} INFO - Uploaded medical.jsonl (46.8MB) → gs://livespeechinterpreter/datasets/v2_approved/medical.jsonl
+[2026-03-18T17:47:32.902+0000] {logging_mixin.py:188} INFO - Uploaded es_to_en.jsonl (47.7MB) → gs://livespeechinterpreter/datasets/v2_approved/es_to_en.jsonl
+[2026-03-18T17:47:41.446+0000] {logging_mixin.py:188} INFO - Uploaded long_sents.jsonl (32.8MB) → gs://livespeechinterpreter/datasets/v2_approved/long_sents.jsonl
+[2026-03-18T17:47:41.447+0000] {logging_mixin.py:188} INFO - 
+All files uploaded to gs://livespeechinterpreter/datasets/v2_approved/
+[2026-03-18T17:47:41.448+0000] {logging_mixin.py:188} INFO - Node 9 complete.
+[2026-03-18T17:47:41.451+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-18T17:47:41.460+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-18T17:47:41.594+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node9_upload_to_gcs, run_id=manual__2026-03-18T17:30:22.249493+00:00, execution_date=20260318T173022, start_date=20260318T173511, end_date=20260318T174741
+[2026-03-18T17:47:41.740+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-18T17:47:41.925+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-18T17:47:41.929+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

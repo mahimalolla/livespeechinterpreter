@@ -1,0 +1,46 @@
+[2026-03-19T01:45:20.215+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T01:45:20.404+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node5_schema_inference manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:20.422+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node5_schema_inference manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:20.423+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T01:45:20.476+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node5_schema_inference> on 2026-03-19 01:44:17.164880+00:00
+[2026-03-19T01:45:20.486+0000] {standard_task_runner.py:64} INFO - Started process 222 to run task
+[2026-03-19T01:45:20.496+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node5_schema_inference', 'manual__2026-03-19T01:44:17.164880+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmp4aigcoto']
+[2026-03-19T01:45:20.499+0000] {standard_task_runner.py:91} INFO - Job 7: Subtask node5_schema_inference
+[2026-03-19T01:45:20.757+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node5_schema_inference manual__2026-03-19T01:44:17.164880+00:00 [running]> on host 3b30bcd592c9
+[2026-03-19T01:45:21.156+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node5_schema_inference' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T01:44:17.164880+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T01:44:17.164880+00:00'
+[2026-03-19T01:45:21.157+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T01:45:21.178+0000] {logging_mixin.py:188} INFO - Schema loaded from reports/schema.json
+[2026-03-19T01:45:21.179+0000] {logging_mixin.py:188} INFO - {
+  "required_fields": [
+    "instruction",
+    "input",
+    "output",
+    "domain",
+    "direction"
+  ],
+  "valid_domains": [
+    "medical",
+    "legal"
+  ],
+  "valid_directions": [
+    "en_to_es",
+    "es_to_en"
+  ],
+  "total_records": 2123785,
+  "null_counts": {
+    "input": 0,
+    "output": 0
+  },
+  "input_len_stats": {
+    "mean": 18.45,
+    "max": 200,
+    "min": 3
+  }
+}
+[2026-03-19T01:45:21.179+0000] {logging_mixin.py:188} INFO - Node 5 complete.
+[2026-03-19T01:45:21.179+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-19T01:45:21.180+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T01:45:21.251+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node5_schema_inference, run_id=manual__2026-03-19T01:44:17.164880+00:00, execution_date=20260319T014417, start_date=20260319T014520, end_date=20260319T014521
+[2026-03-19T01:45:21.333+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-19T01:45:21.444+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T01:45:21.448+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,27 @@
+{
+  "required_fields": [
+    "instruction",
+    "input",
+    "output",
+    "domain",
+    "direction"
+  ],
+  "valid_domains": [
+    "medical",
+    "legal"
+  ],
+  "valid_directions": [
+    "en_to_es",
+    "es_to_en"
+  ],
+  "total_records": 2123785,
+  "null_counts": {
+    "input": 0,
+    "output": 0
+  },
+  "input_len_stats": {
+    "mean": 18.45,
+    "max": 200,
+    "min": 3
+  }
+}

@@ -1,0 +1,20 @@
+[2026-03-19T02:17:45.735+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T02:17:45.858+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node6_anomaly_detection manual__2026-03-19T02:16:42.592505+00:00 [queued]>
+[2026-03-19T02:17:45.878+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node6_anomaly_detection manual__2026-03-19T02:16:42.592505+00:00 [queued]>
+[2026-03-19T02:17:45.878+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T02:17:45.912+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node6_anomaly_detection> on 2026-03-19 02:16:42.592505+00:00
+[2026-03-19T02:17:45.915+0000] {standard_task_runner.py:64} INFO - Started process 219 to run task
+[2026-03-19T02:17:45.925+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node6_anomaly_detection', 'manual__2026-03-19T02:16:42.592505+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpfhxkh88k']
+[2026-03-19T02:17:45.927+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask node6_anomaly_detection
+[2026-03-19T02:17:46.229+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node6_anomaly_detection manual__2026-03-19T02:16:42.592505+00:00 [running]> on host d76d5a4e5605
+[2026-03-19T02:17:46.667+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node6_anomaly_detection' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T02:16:42.592505+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T02:16:42.592505+00:00'
+[2026-03-19T02:17:46.668+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T02:17:46.685+0000] {logging_mixin.py:188} INFO - Reading val.jsonl for anomaly detection...
+[2026-03-19T02:17:49.213+0000] {logging_mixin.py:188} INFO - No anomalies detected. Validated 265473 records.
+[2026-03-19T02:17:49.216+0000] {logging_mixin.py:188} INFO - Node 6 complete.
+[2026-03-19T02:17:49.216+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-19T02:17:49.220+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T02:17:49.303+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node6_anomaly_detection, run_id=manual__2026-03-19T02:16:42.592505+00:00, execution_date=20260319T021642, start_date=20260319T021745, end_date=20260319T021749
+[2026-03-19T02:17:49.405+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-19T02:17:49.545+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T02:17:49.548+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

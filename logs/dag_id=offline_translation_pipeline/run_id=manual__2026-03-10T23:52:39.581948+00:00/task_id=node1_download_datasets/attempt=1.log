@@ -1,0 +1,106 @@
+[2026-03-10T23:52:41.808+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-10T23:52:41.988+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T23:52:39.581948+00:00 [queued]>
+[2026-03-10T23:52:42.006+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T23:52:39.581948+00:00 [queued]>
+[2026-03-10T23:52:42.007+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-10T23:52:42.044+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node1_download_datasets> on 2026-03-10 23:52:39.581948+00:00
+[2026-03-10T23:52:42.052+0000] {standard_task_runner.py:64} INFO - Started process 807 to run task
+[2026-03-10T23:52:42.056+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node1_download_datasets', 'manual__2026-03-10T23:52:39.581948+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpo0u27xj8']
+[2026-03-10T23:52:42.060+0000] {standard_task_runner.py:91} INFO - Job 2: Subtask node1_download_datasets
+[2026-03-10T23:52:42.376+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T23:52:39.581948+00:00 [running]> on host 1412c404c413
+[2026-03-10T23:52:42.832+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node1_download_datasets' AIRFLOW_CTX_EXECUTION_DATE='2026-03-10T23:52:39.581948+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-10T23:52:39.581948+00:00'
+[2026-03-10T23:52:42.834+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-10T23:52:45.782+0000] {config.py:105} INFO - TensorFlow version 2.15.1 available.
+[2026-03-10T23:52:45.789+0000] {config.py:132} INFO - Apache Beam version 2.69.0 available.
+[2026-03-10T23:52:46.168+0000] {logging_mixin.py:188} INFO - Downloading emea_medical...
+[2026-03-10T23:52:46.439+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-10T23:52:46.641+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-10T23:52:46.930+0000] {logging_mixin.py:188} WARNING - Downloading readme: 0.00B [00:00, ?B/s]
+[2026-03-10T23:52:46.934+0000] {logging_mixin.py:188} WARNING - Downloading readme: 65.4kB [00:00, 19.8MB/s]
+[2026-03-10T23:52:47.945+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/revision/805090dc28bf78897da9641cdf08b61287580df9 "HTTP/1.1 200 OK"
+[2026-03-10T23:52:48.004+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/af-en?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T23:52:48.048+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9?recursive=false&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T23:52:48.563+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/en-es?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T23:52:48.582+0000] {logging_mixin.py:188} WARNING - Downloading data:   0%|          | 0.00/237k [00:00<?, ?B/s]
+[2026-03-10T23:52:48.582+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:48.624+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/datasets/Helsinki-NLP/opus-100/resolve/805090dc28bf78897da9641cdf08b61287580df9/en-es/test-00000-of-00001.parquet "HTTP/1.1 302 Found"
+[2026-03-10T23:52:48.838+0000] {_client.py:1026} INFO - HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/621ffdd236468d709f181f0b/a0706cc13447d7c88937f9a97ccea9eb3ae4c3a76fee53aa86d017cf7c212250?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260310T235248Z&X-Amz-Expires=3600&X-Amz-Signature=685843d74608478d71a4cca8003f88c3c7890f990ca1318aa342b400290a3168&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27test-00000-of-00001.parquet%3B+filename%3D%22test-00000-of-00001.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773190368&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3MzE5MDM2OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MjFmZmRkMjM2NDY4ZDcwOWYxODFmMGIvYTA3MDZjYzEzNDQ3ZDdjODg5MzdmOWE5N2NjZWE5ZWIzYWU0YzNhNzZmZWU1M2FhODZkMDE3Y2Y3YzIxMjI1MCoifV19&Signature=hQfwFpK06iM9NhyRsjZqeaXRyjEVKbqCQ6ZU2tC8dowtPfS2%7EAJao8HtTB7um7Ju1xaluNzNdHlvb-wNXluXG3mtqX8NzxUmbGk94qx1UKUlqJyLC3YXGUejVHrhAIALP50-6Q-A1ZCJMjNh0CpwOMDWLYAyBUpc8ZpamKIN6WaisI2DvtgRYebLcZgScYFji-FK8oSDFNjv9r43j%7E2fu7TLFBm0C7ZU1P%7Ea8W0FG%7ECdl38Le6ixRb7mg4FiG4GjB3zH%7EXwA0uGe1L%7EDvIXOrq1axM%7Eeq7cy5RKbAQ7hYder4G%7E%7EOl55FlCCx9wk-RAcICEPrVXh5qp9RIUcLycfbw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 200 OK"
+[2026-03-10T23:52:48.860+0000] {logging_mixin.py:188} WARNING - Downloading data: 100%|##########| 237k/237k [00:00<00:00, 860kB/s]
+[2026-03-10T23:52:48.862+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:48.864+0000] {logging_mixin.py:188} WARNING - Downloading data: 100%|##########| 237k/237k [00:00<00:00, 844kB/s]
+[2026-03-10T23:52:48.870+0000] {logging_mixin.py:188} WARNING - Downloading data:   0%|          | 0.00/99.6M [00:00<?, ?B/s]
+[2026-03-10T23:52:48.871+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:48.915+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/datasets/Helsinki-NLP/opus-100/resolve/805090dc28bf78897da9641cdf08b61287580df9/en-es/train-00000-of-00001.parquet "HTTP/1.1 302 Found"
+[2026-03-10T23:52:48.966+0000] {_client.py:1026} INFO - HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/621ffdd236468d709f181f0b/a9449a316d757e7640058ecc3e965209166a9c0ff807063243ba09f4c4665c56?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260310T235248Z&X-Amz-Expires=3600&X-Amz-Signature=daf0a8179168c600b35656568b29c2900e76f88e52ee1227c9c965a27eeff196&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27train-00000-of-00001.parquet%3B+filename%3D%22train-00000-of-00001.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773190368&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3MzE5MDM2OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MjFmZmRkMjM2NDY4ZDcwOWYxODFmMGIvYTk0NDlhMzE2ZDc1N2U3NjQwMDU4ZWNjM2U5NjUyMDkxNjZhOWMwZmY4MDcwNjMyNDNiYTA5ZjRjNDY2NWM1NioifV19&Signature=X0cH%7Edn-y0Ku96-17lYmi5b9HKEFw2-J3mZrGellDZ6tOWlhAcmlyOy4O4v0i5-7b%7ER8hmCqrLDUZfi8BB%7EqjCSyE5MkA1TBpPji1qKyI6fka4LRAONWK3Txp%7EVgy-YmbNfOcYjMqPeCF9HqW9RIpkr1sLKynNkh6z%7Exp3gZ5bJzNVSA%7E9ZBgUcMAPubc2ch5MiS35vKXC0Zwyf8mqlJN6fzeN4BmxwCCOtqzH4XIMQZxSND%7EDnDgRuicAHXL8Fh7qX6IEVFiA8n3CWSTNBoR%7EGonSPFX7EiIyHoAJKw5AL3mVOYbb077oK9ZJw1m%7E8SwUVJXCusDYhK9j0Zmf-uow__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 200 OK"
+[2026-03-10T23:52:49.628+0000] {logging_mixin.py:188} WARNING - Downloading data:  11%|#         | 10.5M/99.6M [00:00<00:06, 13.9MB/s]
+[2026-03-10T23:52:49.630+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:50.184+0000] {logging_mixin.py:188} WARNING - Downloading data:  21%|##1       | 21.0M/99.6M [00:01<00:04, 16.4MB/s]
+[2026-03-10T23:52:50.185+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:50.567+0000] {logging_mixin.py:188} WARNING - Downloading data:  32%|###1      | 31.5M/99.6M [00:01<00:03, 20.1MB/s]
+[2026-03-10T23:52:50.568+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:51.132+0000] {logging_mixin.py:188} WARNING - Downloading data:  42%|####2     | 41.9M/99.6M [00:02<00:02, 19.5MB/s]
+[2026-03-10T23:52:51.133+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:51.483+0000] {logging_mixin.py:188} WARNING - Downloading data:  53%|#####2    | 52.4M/99.6M [00:02<00:02, 22.3MB/s]
+[2026-03-10T23:52:51.483+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:51.973+0000] {logging_mixin.py:188} WARNING - Downloading data:  63%|######3   | 62.9M/99.6M [00:03<00:01, 22.0MB/s]
+[2026-03-10T23:52:51.973+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:52.582+0000] {logging_mixin.py:188} WARNING - Downloading data:  74%|#######3  | 73.4M/99.6M [00:03<00:01, 20.1MB/s]
+[2026-03-10T23:52:52.583+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:53.186+0000] {logging_mixin.py:188} WARNING - Downloading data:  84%|########4 | 83.9M/99.6M [00:04<00:00, 19.2MB/s]
+[2026-03-10T23:52:53.188+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:53.527+0000] {logging_mixin.py:188} WARNING - Downloading data:  95%|#########4| 94.4M/99.6M [00:04<00:00, 21.7MB/s]
+[2026-03-10T23:52:53.528+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:53.774+0000] {logging_mixin.py:188} WARNING - Downloading data: 100%|##########| 99.6M/99.6M [00:04<00:00, 21.6MB/s]
+[2026-03-10T23:52:53.774+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:53.795+0000] {logging_mixin.py:188} WARNING - Downloading data: 100%|##########| 99.6M/99.6M [00:04<00:00, 20.2MB/s]
+[2026-03-10T23:52:53.814+0000] {logging_mixin.py:188} WARNING - Downloading data:   0%|          | 0.00/238k [00:00<?, ?B/s]
+[2026-03-10T23:52:53.816+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T23:52:53.868+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/datasets/Helsinki-NLP/opus-100/resolve/805090dc28bf78897da9641cdf08b61287580df9/en-es/validation-00000-of-00001.parquet "HTTP/1.1 302 Found"
+[2026-03-10T23:52:53.882+0000] {_client.py:1026} INFO - HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/621ffdd236468d709f181f0b/5873f5afb0c849d953254ff976836a14c91d172224f8dce07086c84166be5f83?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260310T235253Z&X-Amz-Expires=3600&X-Amz-Signature=3ec361bbc467fcbf89602f07b862ce9e75443fac87ad98a0d8c9f79ac143658c&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00001.parquet%3B+filename%3D%22validation-00000-of-00001.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773190373&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3MzE5MDM3M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MjFmZmRkMjM2NDY4ZDcwOWYxODFmMGIvNTg3M2Y1YWZiMGM4NDlkOTUzMjU0ZmY5NzY4MzZhMTRjOTFkMTcyMjI0ZjhkY2UwNzA4NmM4NDE2NmJlNWY4MyoifV19&Signature=G0Y8DBzP%7EoF64qE8Aj-NzpVm5b1EUBVz06r5bWYGAYI8e%7EsSxj6akFbHOUnjy61cbJeUeLdRLsUa6vJTWT9yPyVRGVtO9sa68Y%7EWRFb-J2kcmjksXb72twqAgu6DW10DHAXF-Nsf%7EG4tbFIQ-Ede3UUZFVhV3G2JWbwvxV6jCwzyjgOF3eZxzjSWhXF5r8v5OtLBfvw4OG%7EFOP0Qngr3XHII5P9odn-66WAz8i8CWwyN2iZCI6jpyICTB-YwAonQufnjWgjKPGPKpVq-UgCO9rKRWoRciqD5X%7EfWw2BKPQ1HsEIiypRIn1kusgA3f5wmOymC-ZC3TZK1iOkzeWoRRA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 200 OK"
+[2026-03-10T23:52:53.898+0000] {logging_mixin.py:188} WARNING - Downloading data: 100%|##########| 238k/238k [00:00<00:00, 2.90MB/s]
+[2026-03-10T23:52:53.907+0000] {logging_mixin.py:188} WARNING - Generating test split:   0%|          | 0/2000 [00:00<?, ? examples/s]
+[2026-03-10T23:52:54.019+0000] {logging_mixin.py:188} WARNING - Generating test split:  50%|#####     | 1000/2000 [00:00<00:00, 9018.94 examples/s]
+[2026-03-10T23:52:54.024+0000] {logging_mixin.py:188} WARNING - Generating test split: 100%|##########| 2000/2000 [00:00<00:00, 17144.03 examples/s]
+[2026-03-10T23:52:54.025+0000] {logging_mixin.py:188} WARNING - Generating train split:   0%|          | 0/1000000 [00:00<?, ? examples/s]
+[2026-03-10T23:52:54.130+0000] {logging_mixin.py:188} WARNING - Generating train split:   4%|4         | 41000/1000000 [00:00<00:02, 394915.76 examples/s]
+[2026-03-10T23:52:54.284+0000] {logging_mixin.py:188} WARNING - Generating train split:   8%|8         | 85000/1000000 [00:00<00:02, 321008.86 examples/s]
+[2026-03-10T23:52:54.386+0000] {logging_mixin.py:188} WARNING - Generating train split:  12%|#2        | 125000/1000000 [00:00<00:02, 348722.46 examples/s]
+[2026-03-10T23:52:54.489+0000] {logging_mixin.py:188} WARNING - Generating train split:  17%|#6        | 168000/1000000 [00:00<00:02, 373087.04 examples/s]
+[2026-03-10T23:52:54.590+0000] {logging_mixin.py:188} WARNING - Generating train split:  22%|##2       | 222000/1000000 [00:00<00:01, 427394.81 examples/s]
+[2026-03-10T23:52:54.804+0000] {logging_mixin.py:188} WARNING - Generating train split:  28%|##7       | 276000/1000000 [00:00<00:02, 338945.12 examples/s]
+[2026-03-10T23:52:54.906+0000] {logging_mixin.py:188} WARNING - Generating train split:  32%|###1      | 317000/1000000 [00:00<00:01, 355245.71 examples/s]
+[2026-03-10T23:52:55.057+0000] {logging_mixin.py:188} WARNING - Generating train split:  37%|###6      | 368000/1000000 [00:01<00:01, 349258.34 examples/s]
+[2026-03-10T23:52:55.159+0000] {logging_mixin.py:188} WARNING - Generating train split:  41%|####      | 409000/1000000 [00:01<00:01, 362089.92 examples/s]
+[2026-03-10T23:52:55.315+0000] {logging_mixin.py:188} WARNING - Generating train split:  46%|####6     | 463000/1000000 [00:01<00:01, 357338.90 examples/s]
+[2026-03-10T23:52:55.416+0000] {logging_mixin.py:188} WARNING - Generating train split:  50%|#####     | 505000/1000000 [00:01<00:01, 370971.96 examples/s]
+[2026-03-10T23:52:55.574+0000] {logging_mixin.py:188} WARNING - Generating train split:  56%|#####5    | 556000/1000000 [00:01<00:01, 354575.56 examples/s]
+[2026-03-10T23:52:55.676+0000] {logging_mixin.py:188} WARNING - Generating train split:  60%|######    | 601000/1000000 [00:01<00:01, 375865.87 examples/s]
+[2026-03-10T23:52:55.779+0000] {logging_mixin.py:188} WARNING - Generating train split:  65%|######4   | 647000/1000000 [00:01<00:00, 393861.98 examples/s]
+[2026-03-10T23:52:55.932+0000] {logging_mixin.py:188} WARNING - Generating train split:  70%|#######   | 700000/1000000 [00:01<00:00, 377132.33 examples/s]
+[2026-03-10T23:52:56.034+0000] {logging_mixin.py:188} WARNING - Generating train split:  74%|#######4  | 740000/1000000 [00:02<00:00, 381270.68 examples/s]
+[2026-03-10T23:52:56.187+0000] {logging_mixin.py:188} WARNING - Generating train split:  80%|########  | 801000/1000000 [00:02<00:00, 387434.92 examples/s]
+[2026-03-10T23:52:56.341+0000] {logging_mixin.py:188} WARNING - Generating train split:  85%|########5 | 850000/1000000 [00:02<00:00, 363998.52 examples/s]
+[2026-03-10T23:52:56.492+0000] {logging_mixin.py:188} WARNING - Generating train split:  90%|######### | 905000/1000000 [00:02<00:00, 364270.32 examples/s]
+[2026-03-10T23:52:56.647+0000] {logging_mixin.py:188} WARNING - Generating train split:  95%|#########5| 953000/1000000 [00:02<00:00, 346233.65 examples/s]
+[2026-03-10T23:52:56.750+0000] {logging_mixin.py:188} WARNING - Generating train split: 100%|#########9| 999000/1000000 [00:02<00:00, 370056.68 examples/s]
+[2026-03-10T23:52:56.754+0000] {logging_mixin.py:188} WARNING - Generating train split: 100%|##########| 1000000/1000000 [00:02<00:00, 366569.92 examples/s]
+[2026-03-10T23:52:56.755+0000] {logging_mixin.py:188} WARNING - Generating validation split:   0%|          | 0/2000 [00:00<?, ? examples/s]
+[2026-03-10T23:52:56.764+0000] {logging_mixin.py:188} WARNING - Generating validation split: 100%|##########| 2000/2000 [00:00<00:00, 251283.83 examples/s]
+[2026-03-10T23:52:56.849+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1000 [00:00<?, ?ba/s]
+[2026-03-10T23:52:56.956+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 4/1000 [00:00<00:26, 37.80ba/s]
+[2026-03-10T23:52:57.067+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   1%|1         | 11/1000 [00:00<00:18, 52.81ba/s]
+[2026-03-10T23:52:57.171+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   2%|2         | 21/1000 [00:00<00:13, 72.45ba/s]
+[2026-03-10T23:52:57.278+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   3%|3         | 32/1000 [00:00<00:11, 84.85ba/s]
+[2026-03-10T23:52:57.381+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   4%|4         | 43/1000 [00:00<00:10, 92.04ba/s]
+[2026-03-10T23:52:57.562+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   5%|5         | 53/1000 [00:00<00:12, 74.84ba/s]
+[2026-03-10T23:52:57.663+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   6%|6         | 61/1000 [00:00<00:12, 75.94ba/s]
+[2026-03-10T23:52:57.765+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   7%|7         | 73/1000 [00:00<00:10, 87.78ba/s]
+[2026-03-10T23:52:57.866+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   8%|8         | 84/1000 [00:01<00:09, 93.85ba/s]
+[2026-03-10T23:52:57.971+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2026-03-10T23:52:57.983+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-03-10T23:52:57.984+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   9%|9         | 94/1000 [00:01<00:09, 90.97ba/s]
+[2026-03-10T23:52:58.006+0000] {process_utils.py:132} INFO - Sending 15 to group 807. PIDs of all processes in the group: [807]
+[2026-03-10T23:52:58.008+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 807
+[2026-03-10T23:52:58.013+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-10T23:52:58.015+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  10%|9         | 96/1000 [00:01<00:10, 82.39ba/s]
+[2026-03-10T23:52:58.018+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-10T23:52:58.233+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=807, status='terminated', exitcode=0, started='23:52:41') (807) terminated with exit code 0

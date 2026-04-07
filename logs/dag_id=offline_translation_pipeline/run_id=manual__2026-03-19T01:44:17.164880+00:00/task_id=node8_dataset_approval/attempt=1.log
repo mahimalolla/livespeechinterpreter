@@ -1,0 +1,28 @@
+[2026-03-19T01:45:43.910+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T01:45:44.052+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:44.071+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:44.071+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T01:45:44.107+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node8_dataset_approval> on 2026-03-19 01:44:17.164880+00:00
+[2026-03-19T01:45:44.114+0000] {standard_task_runner.py:64} INFO - Started process 233 to run task
+[2026-03-19T01:45:44.119+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node8_dataset_approval', 'manual__2026-03-19T01:44:17.164880+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmphqmkk5yd']
+[2026-03-19T01:45:44.123+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask node8_dataset_approval
+[2026-03-19T01:45:44.365+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-19T01:44:17.164880+00:00 [running]> on host 3b30bcd592c9
+[2026-03-19T01:45:44.775+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node8_dataset_approval' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T01:44:17.164880+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T01:44:17.164880+00:00'
+[2026-03-19T01:45:44.776+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T01:45:44.794+0000] {logging_mixin.py:188} INFO - Counting records in splits...
+[2026-03-19T01:45:49.364+0000] {logging_mixin.py:188} INFO - Dataset APPROVED:
+[2026-03-19T01:45:49.366+0000] {logging_mixin.py:188} INFO - {
+  "approved": true,
+  "timestamp": "2026-03-19 01:45:49.361835",
+  "train_records": 2123785,
+  "val_records": 265473,
+  "test_records": 265474,
+  "version": "v2_approved"
+}
+[2026-03-19T01:45:49.366+0000] {logging_mixin.py:188} INFO - Node 8 complete.
+[2026-03-19T01:45:49.367+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-19T01:45:49.368+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T01:45:49.440+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node8_dataset_approval, run_id=manual__2026-03-19T01:44:17.164880+00:00, execution_date=20260319T014417, start_date=20260319T014544, end_date=20260319T014549
+[2026-03-19T01:45:49.536+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-19T01:45:49.651+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T01:45:49.654+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

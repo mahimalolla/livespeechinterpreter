@@ -1,0 +1,25 @@
+[2026-03-19T01:45:27.617+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T01:45:27.728+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node7_dataset_slicing manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:27.745+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node7_dataset_slicing manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:27.745+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T01:45:27.777+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node7_dataset_slicing> on 2026-03-19 01:44:17.164880+00:00
+[2026-03-19T01:45:27.782+0000] {standard_task_runner.py:64} INFO - Started process 231 to run task
+[2026-03-19T01:45:27.787+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node7_dataset_slicing', 'manual__2026-03-19T01:44:17.164880+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpimxe2bz7']
+[2026-03-19T01:45:27.790+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask node7_dataset_slicing
+[2026-03-19T01:45:28.012+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node7_dataset_slicing manual__2026-03-19T01:44:17.164880+00:00 [running]> on host 3b30bcd592c9
+[2026-03-19T01:45:28.416+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node7_dataset_slicing' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T01:44:17.164880+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T01:44:17.164880+00:00'
+[2026-03-19T01:45:28.417+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T01:45:28.438+0000] {logging_mixin.py:188} INFO - Reading test.jsonl for slicing...
+[2026-03-19T01:45:33.638+0000] {logging_mixin.py:188} INFO - Slice [medical]: 158075 records → /opt/***/data/processed/slices/medical.jsonl
+[2026-03-19T01:45:35.395+0000] {logging_mixin.py:188} INFO - Slice [legal]: 107399 records → /opt/***/data/processed/slices/legal.jsonl
+[2026-03-19T01:45:37.581+0000] {logging_mixin.py:188} INFO - Slice [en_to_es]: 132921 records → /opt/***/data/processed/slices/en_to_es.jsonl
+[2026-03-19T01:45:39.812+0000] {logging_mixin.py:188} INFO - Slice [es_to_en]: 132553 records → /opt/***/data/processed/slices/es_to_en.jsonl
+[2026-03-19T01:45:41.515+0000] {logging_mixin.py:188} INFO - Slice [short_sents]: 147389 records → /opt/***/data/processed/slices/short_sents.jsonl
+[2026-03-19T01:45:42.570+0000] {logging_mixin.py:188} INFO - Slice [long_sents]: 48927 records → /opt/***/data/processed/slices/long_sents.jsonl
+[2026-03-19T01:45:42.571+0000] {logging_mixin.py:188} INFO - Node 7 complete.
+[2026-03-19T01:45:42.733+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-19T01:45:42.737+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T01:45:42.844+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node7_dataset_slicing, run_id=manual__2026-03-19T01:44:17.164880+00:00, execution_date=20260319T014417, start_date=20260319T014527, end_date=20260319T014542
+[2026-03-19T01:45:42.951+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-19T01:45:43.093+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T01:45:43.097+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

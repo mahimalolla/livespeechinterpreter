@@ -1,0 +1,18 @@
+{
+  "total_records": 2123785,
+  "domain_distribution": {
+    "medical": 1262996,
+    "legal": 860789
+  },
+  "direction_distribution": {
+    "es_to_en": 1062636,
+    "en_to_es": 1061149
+  },
+  "input_len_mean": 18.45,
+  "input_len_max": 200,
+  "input_len_min": 3,
+  "output_len_mean": 18.45,
+  "output_len_max": 200,
+  "null_input_count": 0,
+  "null_output_count": 0
+}

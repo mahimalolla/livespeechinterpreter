@@ -1,0 +1,140 @@
+[2026-03-11T00:01:11.207+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T00:01:11.328+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:01:11.346+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:01:11.347+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2026-03-11T00:01:11.380+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node1_download_datasets> on 2026-03-11 00:00:32.108331+00:00
+[2026-03-11T00:01:11.385+0000] {standard_task_runner.py:64} INFO - Started process 995 to run task
+[2026-03-11T00:01:11.389+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node1_download_datasets', 'manual__2026-03-11T00:00:32.108331+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpk6eezz90']
+[2026-03-11T00:01:11.391+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask node1_download_datasets
+[2026-03-11T00:01:11.630+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [running]> on host 1412c404c413
+[2026-03-11T00:01:12.039+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node1_download_datasets' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T00:00:32.108331+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T00:00:32.108331+00:00'
+[2026-03-11T00:01:12.040+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T00:01:13.217+0000] {config.py:105} INFO - TensorFlow version 2.15.1 available.
+[2026-03-11T00:01:13.220+0000] {config.py:132} INFO - Apache Beam version 2.69.0 available.
+[2026-03-11T00:01:13.381+0000] {logging_mixin.py:188} INFO - Downloading emea_medical...
+[2026-03-11T00:01:13.597+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:14.296+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:15.489+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/revision/805090dc28bf78897da9641cdf08b61287580df9 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:15.531+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/af-en?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:15.569+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9?recursive=false&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:15.749+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/en-es?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:15.832+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1000 [00:00<?, ?ba/s]
+[2026-03-11T00:01:16.011+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 2/1000 [00:00<01:28, 11.25ba/s]
+[2026-03-11T00:01:16.113+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   3%|2         | 27/1000 [00:00<00:08, 116.60ba/s]
+[2026-03-11T00:01:16.214+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   5%|5         | 53/1000 [00:00<00:05, 171.20ba/s]
+[2026-03-11T00:01:16.318+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   8%|8         | 80/1000 [00:00<00:04, 203.83ba/s]
+[2026-03-11T00:01:16.419+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  11%|#         | 107/1000 [00:00<00:03, 225.06ba/s]
+[2026-03-11T00:01:16.522+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  13%|#3        | 134/1000 [00:00<00:03, 237.42ba/s]
+[2026-03-11T00:01:16.632+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  16%|#5        | 159/1000 [00:00<00:03, 233.69ba/s]
+[2026-03-11T00:01:16.736+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  18%|#8        | 184/1000 [00:00<00:03, 235.80ba/s]
+[2026-03-11T00:01:16.839+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  21%|##1       | 212/1000 [00:01<00:03, 247.03ba/s]
+[2026-03-11T00:01:16.939+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  24%|##3       | 239/1000 [00:01<00:03, 253.28ba/s]
+[2026-03-11T00:01:17.043+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  27%|##6       | 267/1000 [00:01<00:02, 258.79ba/s]
+[2026-03-11T00:01:17.144+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  30%|##9       | 295/1000 [00:01<00:02, 264.42ba/s]
+[2026-03-11T00:01:17.247+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  32%|###2      | 324/1000 [00:01<00:02, 269.41ba/s]
+[2026-03-11T00:01:17.348+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  35%|###5      | 352/1000 [00:01<00:02, 271.88ba/s]
+[2026-03-11T00:01:17.450+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  38%|###8      | 381/1000 [00:01<00:02, 275.22ba/s]
+[2026-03-11T00:01:17.552+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  41%|####1     | 410/1000 [00:01<00:02, 278.23ba/s]
+[2026-03-11T00:01:17.657+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  44%|####3     | 438/1000 [00:01<00:02, 274.51ba/s]
+[2026-03-11T00:01:17.757+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  47%|####6     | 466/1000 [00:01<00:01, 276.11ba/s]
+[2026-03-11T00:01:17.858+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  49%|####9     | 494/1000 [00:02<00:01, 276.62ba/s]
+[2026-03-11T00:01:17.964+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  52%|#####2    | 522/1000 [00:02<00:01, 272.43ba/s]
+[2026-03-11T00:01:18.065+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  55%|#####5    | 550/1000 [00:02<00:01, 274.20ba/s]
+[2026-03-11T00:01:18.171+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  58%|#####7    | 578/1000 [00:02<00:01, 270.67ba/s]
+[2026-03-11T00:01:18.274+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  61%|######    | 607/1000 [00:02<00:01, 274.15ba/s]
+[2026-03-11T00:01:18.376+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  64%|######3   | 636/1000 [00:02<00:01, 276.90ba/s]
+[2026-03-11T00:01:18.482+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  66%|######6   | 664/1000 [00:02<00:01, 273.37ba/s]
+[2026-03-11T00:01:18.592+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  69%|######9   | 692/1000 [00:02<00:01, 267.54ba/s]
+[2026-03-11T00:01:18.694+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  72%|#######1  | 719/1000 [00:02<00:01, 266.51ba/s]
+[2026-03-11T00:01:18.798+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  75%|#######4  | 747/1000 [00:02<00:00, 267.76ba/s]
+[2026-03-11T00:01:18.899+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  77%|#######7  | 774/1000 [00:03<00:00, 267.12ba/s]
+[2026-03-11T00:01:19.003+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  80%|########  | 801/1000 [00:03<00:00, 265.00ba/s]
+[2026-03-11T00:01:19.106+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  83%|########2 | 830/1000 [00:03<00:00, 269.65ba/s]
+[2026-03-11T00:01:19.207+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  86%|########5 | 858/1000 [00:03<00:00, 272.64ba/s]
+[2026-03-11T00:01:19.318+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  89%|########8 | 886/1000 [00:03<00:00, 265.71ba/s]
+[2026-03-11T00:01:19.434+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  91%|#########1| 913/1000 [00:03<00:00, 255.60ba/s]
+[2026-03-11T00:01:19.536+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  94%|#########3| 939/1000 [00:03<00:00, 254.93ba/s]
+[2026-03-11T00:01:19.675+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  96%|#########6| 965/1000 [00:03<00:00, 230.93ba/s]
+[2026-03-11T00:01:19.782+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  99%|#########8| 989/1000 [00:03<00:00, 228.93ba/s]
+[2026-03-11T00:01:19.830+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|##########| 1000/1000 [00:03<00:00, 250.22ba/s]
+[2026-03-11T00:01:20.680+0000] {logging_mixin.py:188} INFO - Saved emea_medical → /opt/***/data/raw/emea_medical.jsonl | checksum: 623e1bbe85f5e734863c22d55b40ba34
+[2026-03-11T00:01:20.798+0000] {logging_mixin.py:188} INFO - Downloading europarl_legal...
+[2026-03-11T00:01:21.037+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-11T00:01:21.313+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-11T00:01:21.739+0000] {local_task_job_runner.py:291} WARNING - Recorded pid 1014 does not match the current pid 995
+[2026-03-11T00:01:21.741+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-03-11T00:01:21.745+0000] {process_utils.py:132} INFO - Sending 15 to group 995. PIDs of all processes in the group: [995]
+[2026-03-11T00:01:21.746+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 995
+[2026-03-11T00:01:21.749+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-11T00:01:21.750+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T00:01:21.828+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 15, in node1
+    def node1(): from download_datasets import download_datasets; download_datasets()
+  File "/opt/airflow/scripts/download_datasets.py", line 26, in download_datasets
+    ds = load_dataset(cfg["hf_id"], cfg["config"], trust_remote_code=True)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/load.py", line 2587, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/load.py", line 2259, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/load.py", line 1885, in dataset_module_factory
+    return HubDatasetModuleFactoryWithoutScript(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/load.py", line 1217, in get_module
+    dataset_card_data = DatasetCard.load(Path(dataset_readme_path)).data
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/repocard.py", line 187, in load
+    return cls(f.read(), ignore_metadata_errors=ignore_metadata_errors)
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/repocard.py", line 77, in __init__
+    self.content = content
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/repocard.py", line 95, in content
+    data_dict = yaml.safe_load(yaml_block)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/composer.py", line 110, in compose_sequence_node
+    while not self.check_event(SequenceEndEvent):
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/parser.py", line 405, in parse_indentless_sequence_entry
+    if not self.check_token(BlockEntryToken,
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/scanner.py", line 115, in check_token
+    while self.need_more_tokens():
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/scanner.py", line 152, in need_more_tokens
+    self.stale_possible_simple_keys()
+  File "/home/airflow/.local/lib/python3.9/site-packages/yaml/scanner.py", line 286, in stale_possible_simple_keys
+    for level in list(self.possible_simple_keys):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-03-11T00:01:21.845+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=offline_translation_pipeline, task_id=node1_download_datasets, run_id=manual__2026-03-11T00:00:32.108331+00:00, execution_date=20260311T000032, start_date=20260311T000121, end_date=20260311T000121
+[2026-03-11T00:01:21.929+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=995, status='terminated', exitcode=2, started='00:01:10') (995) terminated with exit code 2

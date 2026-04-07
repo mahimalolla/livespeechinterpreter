@@ -1,0 +1,69 @@
+stages:
+  download:
+    cmd: python scripts/download_datasets.py
+    deps:
+      - scripts/download_datasets.py
+    outs:
+      - data/raw
+
+  preprocess:
+    cmd: python scripts/preprocess.py
+    deps:
+      - scripts/preprocess.py
+      - data/raw
+    outs:
+      - data/processed
+
+  schema_inference:
+    cmd: python scripts/schema_inference.py
+    deps:
+      - scripts/schema_inference.py
+      - data/processed
+    outs:
+      - data/schema.json
+
+  split_dataset:
+    cmd: python scripts/split_dataset.py
+    deps:
+      - scripts/split_dataset.py
+      - data/processed
+    outs:
+      - data/train
+      - data/test
+      - data/val
+
+  ge_stats:
+    cmd: python scripts/ge_stats.py
+    deps:
+      - scripts/ge_stats.py
+      - data/processed
+    outs:
+      - data/stats
+
+  anomaly_detection:
+    cmd: python scripts/anomaly_detection.py
+    deps:
+      - scripts/anomaly_detection.py
+      - data/processed
+    outs:
+      - data/anomalies
+
+  dataset_approval:
+    cmd: python scripts/dataset_approval.py
+    deps:
+      - scripts/dataset_approval.py
+      - data/processed
+
+  dataset_slicing:
+    cmd: python scripts/dataset_slicing.py
+    deps:
+      - scripts/dataset_slicing.py
+      - data/processed
+    outs:
+      - data/sliced
+
+  upload_gcs:
+    cmd: python scripts/upload_gcs.py
+    deps:
+      - scripts/upload_gcs.py
+      - data/processed

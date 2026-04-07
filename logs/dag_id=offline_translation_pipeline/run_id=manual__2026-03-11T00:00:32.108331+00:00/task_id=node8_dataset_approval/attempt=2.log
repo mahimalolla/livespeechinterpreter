@@ -1,0 +1,34 @@
+[2026-03-11T00:19:23.110+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T00:19:23.227+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:19:23.246+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:19:23.247+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-03-11T00:19:23.292+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node8_dataset_approval> on 2026-03-11 00:00:32.108331+00:00
+[2026-03-11T00:19:23.305+0000] {standard_task_runner.py:64} INFO - Started process 1292 to run task
+[2026-03-11T00:19:23.310+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node8_dataset_approval', 'manual__2026-03-11T00:00:32.108331+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmp77w81nu0']
+[2026-03-11T00:19:23.313+0000] {standard_task_runner.py:91} INFO - Job 27: Subtask node8_dataset_approval
+[2026-03-11T00:19:23.594+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node8_dataset_approval manual__2026-03-11T00:00:32.108331+00:00 [running]> on host 1412c404c413
+[2026-03-11T00:19:24.008+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node8_dataset_approval' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T00:00:32.108331+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T00:00:32.108331+00:00'
+[2026-03-11T00:19:24.009+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T00:19:24.027+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T00:19:24.028+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 22, in node8
+    def node8(): from dataset_approval import approve_dataset; approve_dataset()
+  File "/opt/airflow/scripts/dataset_approval.py", line 8, in approve_dataset
+    train = json.load(open("/opt/airflow/data/processed/train.json"))
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/processed/train.json'
+[2026-03-11T00:19:24.090+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=offline_translation_pipeline, task_id=node8_dataset_approval, run_id=manual__2026-03-11T00:00:32.108331+00:00, execution_date=20260311T000032, start_date=20260311T001923, end_date=20260311T001924
+[2026-03-11T00:19:24.138+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 27 for task node8_dataset_approval ([Errno 2] No such file or directory: '/opt/airflow/data/processed/train.json'; 1292)
+[2026-03-11T00:19:24.164+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-03-11T00:19:24.285+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-11T00:19:24.303+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

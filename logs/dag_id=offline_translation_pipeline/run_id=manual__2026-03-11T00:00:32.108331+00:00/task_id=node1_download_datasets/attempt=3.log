@@ -1,0 +1,77 @@
+[2026-03-11T00:01:20.989+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T00:01:21.147+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:01:21.186+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:01:21.187+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2026-03-11T00:01:21.248+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node1_download_datasets> on 2026-03-11 00:00:32.108331+00:00
+[2026-03-11T00:01:21.263+0000] {standard_task_runner.py:64} INFO - Started process 1014 to run task
+[2026-03-11T00:01:21.269+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node1_download_datasets', 'manual__2026-03-11T00:00:32.108331+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpx9hm6edx']
+[2026-03-11T00:01:21.272+0000] {standard_task_runner.py:91} INFO - Job 13: Subtask node1_download_datasets
+[2026-03-11T00:01:21.516+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-11T00:00:32.108331+00:00 [running]> on host 1412c404c413
+[2026-03-11T00:01:21.933+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node1_download_datasets' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T00:00:32.108331+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T00:00:32.108331+00:00'
+[2026-03-11T00:01:21.934+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T00:01:23.162+0000] {config.py:105} INFO - TensorFlow version 2.15.1 available.
+[2026-03-11T00:01:23.166+0000] {config.py:132} INFO - Apache Beam version 2.69.0 available.
+[2026-03-11T00:01:23.367+0000] {logging_mixin.py:188} INFO - Downloading emea_medical...
+[2026-03-11T00:01:23.582+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:23.758+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:24.662+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/revision/805090dc28bf78897da9641cdf08b61287580df9 "HTTP/1.1 200 OK"
+[2026-03-11T00:01:24.708+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/af-en?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:24.745+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9?recursive=false&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:24.901+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/en-es?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-11T00:01:24.981+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1000 [00:00<?, ?ba/s]
+[2026-03-11T00:01:25.139+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 2/1000 [00:00<01:18, 12.78ba/s]
+[2026-03-11T00:01:25.240+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   3%|2         | 28/1000 [00:00<00:07, 129.88ba/s]
+[2026-03-11T00:01:25.342+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   5%|5         | 52/1000 [00:00<00:05, 172.99ba/s]
+[2026-03-11T00:01:25.445+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   8%|8         | 81/1000 [00:00<00:04, 213.35ba/s]
+[2026-03-11T00:01:25.547+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  11%|#         | 107/1000 [00:00<00:03, 227.34ba/s]
+[2026-03-11T00:01:25.651+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  13%|#3        | 132/1000 [00:00<00:03, 232.10ba/s]
+[2026-03-11T00:01:25.752+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  16%|#5        | 156/1000 [00:00<00:03, 234.49ba/s]
+[2026-03-11T00:01:25.856+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  18%|#8        | 182/1000 [00:00<00:03, 238.37ba/s]
+[2026-03-11T00:01:25.981+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  21%|##        | 207/1000 [00:00<00:03, 224.80ba/s]
+[2026-03-11T00:01:26.084+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  23%|##3       | 231/1000 [00:01<00:03, 227.69ba/s]
+[2026-03-11T00:01:26.186+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  26%|##5       | 258/1000 [00:01<00:03, 238.26ba/s]
+[2026-03-11T00:01:26.286+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  28%|##8       | 284/1000 [00:01<00:02, 244.54ba/s]
+[2026-03-11T00:01:26.390+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  31%|###       | 309/1000 [00:01<00:02, 243.20ba/s]
+[2026-03-11T00:01:26.490+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  33%|###3      | 334/1000 [00:01<00:02, 245.11ba/s]
+[2026-03-11T00:01:26.591+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  36%|###6      | 362/1000 [00:01<00:02, 254.83ba/s]
+[2026-03-11T00:01:26.695+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  39%|###8      | 389/1000 [00:01<00:02, 256.54ba/s]
+[2026-03-11T00:01:26.796+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  42%|####1     | 416/1000 [00:01<00:02, 259.40ba/s]
+[2026-03-11T00:01:26.896+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  44%|####4     | 444/1000 [00:01<00:02, 265.29ba/s]
+[2026-03-11T00:01:26.999+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  47%|####7     | 472/1000 [00:02<00:01, 267.75ba/s]
+[2026-03-11T00:01:27.100+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  50%|#####     | 500/1000 [00:02<00:01, 270.41ba/s]
+[2026-03-11T00:01:27.208+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  53%|#####2    | 528/1000 [00:02<00:01, 267.20ba/s]
+[2026-03-11T00:01:27.314+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  56%|#####5    | 555/1000 [00:02<00:01, 263.42ba/s]
+[2026-03-11T00:01:27.477+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  58%|#####8    | 582/1000 [00:02<00:01, 224.24ba/s]
+[2026-03-11T00:01:27.581+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  61%|######    | 606/1000 [00:02<00:01, 225.93ba/s]
+[2026-03-11T00:01:27.744+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  63%|######3   | 630/1000 [00:02<00:01, 196.39ba/s]
+[2026-03-11T00:01:27.885+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  65%|######5   | 651/1000 [00:02<00:01, 181.42ba/s]
+[2026-03-11T00:01:27.987+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  68%|######7   | 677/1000 [00:03<00:01, 199.20ba/s]
+[2026-03-11T00:01:28.123+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  70%|######9   | 698/1000 [00:03<00:01, 185.21ba/s]
+[2026-03-11T00:01:28.252+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  72%|#######1  | 718/1000 [00:03<00:01, 176.07ba/s]
+[2026-03-11T00:01:28.366+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  74%|#######3  | 737/1000 [00:03<00:01, 173.27ba/s]
+[2026-03-11T00:01:28.468+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  76%|#######5  | 758/1000 [00:03<00:01, 181.90ba/s]
+[2026-03-11T00:01:28.570+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  78%|#######7  | 778/1000 [00:03<00:01, 185.87ba/s]
+[2026-03-11T00:01:28.692+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  80%|#######9  | 797/1000 [00:03<00:01, 176.27ba/s]
+[2026-03-11T00:01:28.796+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  82%|########1 | 817/1000 [00:03<00:01, 180.75ba/s]
+[2026-03-11T00:01:28.927+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  84%|########3 | 836/1000 [00:03<00:00, 168.86ba/s]
+[2026-03-11T00:01:29.047+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  85%|########5 | 854/1000 [00:04<00:00, 163.13ba/s]
+[2026-03-11T00:01:29.155+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  87%|########7 | 873/1000 [00:04<00:00, 166.73ba/s]
+[2026-03-11T00:01:29.259+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  89%|########9 | 890/1000 [00:04<00:00, 165.82ba/s]
+[2026-03-11T00:01:29.370+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  91%|######### | 907/1000 [00:04<00:00, 162.04ba/s]
+[2026-03-11T00:01:29.487+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  92%|#########2| 924/1000 [00:04<00:00, 156.84ba/s]
+[2026-03-11T00:01:29.596+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  94%|#########4| 944/1000 [00:04<00:00, 164.71ba/s]
+[2026-03-11T00:01:29.705+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  96%|#########6| 961/1000 [00:04<00:00, 161.92ba/s]
+[2026-03-11T00:01:29.806+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  98%|#########7| 978/1000 [00:04<00:00, 163.55ba/s]
+[2026-03-11T00:01:29.908+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|#########9| 999/1000 [00:04<00:00, 176.09ba/s]
+[2026-03-11T00:01:29.915+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|##########| 1000/1000 [00:04<00:00, 202.73ba/s]
+[2026-03-11T00:01:30.931+0000] {logging_mixin.py:188} INFO - Saved emea_medical → /opt/***/data/raw/emea_medical.jsonl | checksum: 623e1bbe85f5e734863c22d55b40ba34
+[2026-03-11T00:01:30.936+0000] {logging_mixin.py:188} INFO - Downloading europarl_legal...
+[2026-03-11T00:01:31.031+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-11T00:01:31.344+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-11T00:01:31.631+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2026-03-11T00:01:31.633+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-03-11T00:01:31.638+0000] {process_utils.py:132} INFO - Sending 15 to group 1014. PIDs of all processes in the group: [1014]
+[2026-03-11T00:01:31.639+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1014
+[2026-03-11T00:01:31.642+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-11T00:01:31.643+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T00:01:31.823+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1014, status='terminated', exitcode=0, started='00:01:20') (1014) terminated with exit code 0

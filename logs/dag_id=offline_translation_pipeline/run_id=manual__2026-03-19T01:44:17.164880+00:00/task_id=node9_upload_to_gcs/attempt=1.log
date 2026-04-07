@@ -1,0 +1,103 @@
+[2026-03-19T01:45:50.099+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T01:45:50.209+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:50.225+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-19T01:44:17.164880+00:00 [queued]>
+[2026-03-19T01:45:50.226+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T01:45:50.258+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node9_upload_to_gcs> on 2026-03-19 01:44:17.164880+00:00
+[2026-03-19T01:45:50.263+0000] {standard_task_runner.py:64} INFO - Started process 235 to run task
+[2026-03-19T01:45:50.267+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node9_upload_to_gcs', 'manual__2026-03-19T01:44:17.164880+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpmapyz233']
+[2026-03-19T01:45:50.270+0000] {standard_task_runner.py:91} INFO - Job 11: Subtask node9_upload_to_gcs
+[2026-03-19T01:45:50.512+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-19T01:44:17.164880+00:00 [running]> on host 3b30bcd592c9
+[2026-03-19T01:45:50.922+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node9_upload_to_gcs' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T01:44:17.164880+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T01:44:17.164880+00:00'
+[2026-03-19T01:45:50.924+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T01:45:51.185+0000] {logging_mixin.py:188} INFO - Connecting to GCS bucket: livespeechinterpreter...
+[2026-03-19T01:48:18.758+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T01:48:18.771+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 514, in request
+    self.send(chunk)
+  File "/usr/local/lib/python3.9/http/client.py", line 1001, in send
+    self.sock.sendall(data)
+  File "/usr/local/lib/python3.9/ssl.py", line 1238, in sendall
+    v = self.send(byte_view[count:])
+  File "/usr/local/lib/python3.9/ssl.py", line 1207, in send
+    return self._sslobj.write(data)
+socket.timeout: The write operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/retry.py", line 490, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 514, in request
+    self.send(chunk)
+  File "/usr/local/lib/python3.9/http/client.py", line 1001, in send
+    self.sock.sendall(data)
+  File "/usr/local/lib/python3.9/ssl.py", line 1238, in sendall
+    v = self.send(byte_view[count:])
+  File "/usr/local/lib/python3.9/ssl.py", line 1207, in send
+    return self._sslobj.write(data)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', timeout('The write operation timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 24, in node9
+    def node9(): from upload_gcs import upload_to_gcs; upload_to_gcs()
+  File "/opt/airflow/scripts/upload_gcs.py", line 36, in upload_to_gcs
+    blob.upload_from_filename(local_path)
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/cloud/storage/blob.py", line 2959, in upload_from_filename
+    self._handle_filename_and_upload(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/cloud/storage/blob.py", line 2829, in _handle_filename_and_upload
+    self._prep_and_do_upload(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/cloud/storage/blob.py", line 2637, in _prep_and_do_upload
+    created_json = self._do_upload(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/cloud/storage/blob.py", line 2460, in _do_upload
+    response = self._do_resumable_upload(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/cloud/storage/blob.py", line 2296, in _do_resumable_upload
+    response = upload.transmit_next_chunk(transport, timeout=timeout)
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/resumable_media/requests/upload.py", line 515, in transmit_next_chunk
+    return _request_helpers.wait_and_retry(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/resumable_media/requests/_request_helpers.py", line 178, in wait_and_retry
+    raise error
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/resumable_media/requests/_request_helpers.py", line 155, in wait_and_retry
+    response = func()
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/resumable_media/requests/upload.py", line 507, in retriable_request
+    result = transport.request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/google/auth/transport/requests.py", line 537, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 659, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', timeout('The write operation timed out'))
+[2026-03-19T01:48:18.872+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=offline_translation_pipeline, task_id=node9_upload_to_gcs, run_id=manual__2026-03-19T01:44:17.164880+00:00, execution_date=20260319T014417, start_date=20260319T014550, end_date=20260319T014818
+[2026-03-19T01:48:18.955+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 11 for task node9_upload_to_gcs (('Connection aborted.', timeout('The write operation timed out')); 235)
+[2026-03-19T01:48:19.016+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-03-19T01:48:19.145+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T01:48:19.148+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

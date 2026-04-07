@@ -1,0 +1,84 @@
+[2026-03-19T02:17:50.548+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-19T02:17:50.671+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node6b_bias_detection manual__2026-03-19T02:16:42.592505+00:00 [queued]>
+[2026-03-19T02:17:50.696+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node6b_bias_detection manual__2026-03-19T02:16:42.592505+00:00 [queued]>
+[2026-03-19T02:17:50.697+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-19T02:17:50.736+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node6b_bias_detection> on 2026-03-19 02:16:42.592505+00:00
+[2026-03-19T02:17:50.741+0000] {standard_task_runner.py:64} INFO - Started process 221 to run task
+[2026-03-19T02:17:50.746+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node6b_bias_detection', 'manual__2026-03-19T02:16:42.592505+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpk39zit8w']
+[2026-03-19T02:17:50.748+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask node6b_bias_detection
+[2026-03-19T02:17:50.978+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node6b_bias_detection manual__2026-03-19T02:16:42.592505+00:00 [running]> on host d76d5a4e5605
+[2026-03-19T02:17:51.392+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node6b_bias_detection' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T02:16:42.592505+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-19T02:16:42.592505+00:00'
+[2026-03-19T02:17:51.393+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-19T02:17:51.414+0000] {logging_mixin.py:188} INFO - Node 6b — Bias Detection across dataset slices
+[2026-03-19T02:18:04.490+0000] {logging_mixin.py:188} INFO - Overall test set: 265474 records
+[2026-03-19T02:18:04.516+0000] {logging_mixin.py:188} INFO - Overall stats: {'count': 265474, 'avg_input_len': 18.39, 'avg_output_len': 18.4, 'avg_length_ratio': 1.03, 'input_diversity': 0.055, 'output_diversity': 0.055, 'avg_word_overlap': 0.055}
+[2026-03-19T02:18:10.617+0000] {logging_mixin.py:188} INFO - 
+Slice [medical] — 158075 records
+[2026-03-19T02:18:10.622+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=12.970  overall=18.390  deviation=-0.295  ⚠ BIASED (UNDER by 29.5%)
+[2026-03-19T02:18:10.622+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=12.960  overall=18.400  deviation=-0.296  ⚠ BIASED (UNDER by 29.6%)
+[2026-03-19T02:18:10.623+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=1.037  overall=1.030  deviation=+0.007  ✓ OK
+[2026-03-19T02:18:10.623+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.103  overall=0.055  deviation=+0.873  ⚠ BIASED (OVER by 87.3%)
+[2026-03-19T02:18:10.623+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.103  overall=0.055  deviation=+0.873  ⚠ BIASED (OVER by 87.3%)
+[2026-03-19T02:18:10.623+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.071  overall=0.055  deviation=+0.291  ⚠ BIASED (OVER by 29.1%)
+[2026-03-19T02:18:17.526+0000] {logging_mixin.py:188} INFO - 
+Slice [legal] — 107399 records
+[2026-03-19T02:18:17.531+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=26.370  overall=18.390  deviation=+0.434  ⚠ BIASED (OVER by 43.4%)
+[2026-03-19T02:18:17.532+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=26.390  overall=18.400  deviation=+0.434  ⚠ BIASED (OVER by 43.4%)
+[2026-03-19T02:18:17.533+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=1.020  overall=1.030  deviation=-0.010  ✓ OK
+[2026-03-19T02:18:17.534+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.041  overall=0.055  deviation=-0.255  ⚠ BIASED (UNDER by 25.5%)
+[2026-03-19T02:18:17.534+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.041  overall=0.055  deviation=-0.255  ⚠ BIASED (UNDER by 25.5%)
+[2026-03-19T02:18:17.535+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.030  overall=0.055  deviation=-0.455  ⚠ BIASED (UNDER by 45.5%)
+[2026-03-19T02:18:23.742+0000] {logging_mixin.py:188} INFO - 
+Slice [en_to_es] — 132921 records
+[2026-03-19T02:18:23.745+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=18.080  overall=18.390  deviation=-0.017  ✓ OK
+[2026-03-19T02:18:23.746+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=18.750  overall=18.400  deviation=+0.019  ✓ OK
+[2026-03-19T02:18:23.746+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=1.029  overall=1.030  deviation=-0.001  ✓ OK
+[2026-03-19T02:18:23.747+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.052  overall=0.055  deviation=-0.055  ✓ OK
+[2026-03-19T02:18:23.747+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.063  overall=0.055  deviation=+0.145  ✓ OK
+[2026-03-19T02:18:23.748+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.055  overall=0.055  deviation=+0.000  ✓ OK
+[2026-03-19T02:18:30.266+0000] {logging_mixin.py:188} INFO - 
+Slice [es_to_en] — 132553 records
+[2026-03-19T02:18:30.269+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=18.710  overall=18.390  deviation=+0.017  ✓ OK
+[2026-03-19T02:18:30.269+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=18.040  overall=18.400  deviation=-0.020  ✓ OK
+[2026-03-19T02:18:30.269+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=1.032  overall=1.030  deviation=+0.002  ✓ OK
+[2026-03-19T02:18:30.270+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.063  overall=0.055  deviation=+0.145  ✓ OK
+[2026-03-19T02:18:30.270+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.052  overall=0.055  deviation=-0.055  ✓ OK
+[2026-03-19T02:18:30.270+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.055  overall=0.055  deviation=+0.000  ✓ OK
+[2026-03-19T02:18:34.391+0000] {logging_mixin.py:188} INFO - 
+Slice [short_sents] — 147389 records
+[2026-03-19T02:18:34.396+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=7.720  overall=18.390  deviation=-0.580  ⚠ BIASED (UNDER by 58.0%)
+[2026-03-19T02:18:34.396+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=7.960  overall=18.400  deviation=-0.567  ⚠ BIASED (UNDER by 56.7%)
+[2026-03-19T02:18:34.397+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=1.055  overall=1.030  deviation=+0.024  ✓ OK
+[2026-03-19T02:18:34.397+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.121  overall=0.055  deviation=+1.200  ⚠ BIASED (OVER by 120.0%)
+[2026-03-19T02:18:34.398+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.118  overall=0.055  deviation=+1.145  ⚠ BIASED (OVER by 114.5%)
+[2026-03-19T02:18:34.398+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.067  overall=0.055  deviation=+0.218  ⚠ BIASED (OVER by 21.8%)
+[2026-03-19T02:18:40.257+0000] {logging_mixin.py:188} INFO - 
+Slice [long_sents] — 48927 records
+[2026-03-19T02:18:40.262+0000] {logging_mixin.py:188} INFO -   avg_input_len             slice=45.090  overall=18.390  deviation=+1.452  ⚠ BIASED (OVER by 145.2%)
+[2026-03-19T02:18:40.262+0000] {logging_mixin.py:188} INFO -   avg_output_len            slice=44.060  overall=18.400  deviation=+1.395  ⚠ BIASED (OVER by 139.5%)
+[2026-03-19T02:18:40.263+0000] {logging_mixin.py:188} INFO -   avg_length_ratio          slice=0.982  overall=1.030  deviation=-0.047  ✓ OK
+[2026-03-19T02:18:40.263+0000] {logging_mixin.py:188} INFO -   input_diversity           slice=0.060  overall=0.055  deviation=+0.091  ✓ OK
+[2026-03-19T02:18:40.264+0000] {logging_mixin.py:188} INFO -   output_diversity          slice=0.061  overall=0.055  deviation=+0.109  ✓ OK
+[2026-03-19T02:18:40.264+0000] {logging_mixin.py:188} INFO -   avg_word_overlap          slice=0.041  overall=0.055  deviation=-0.255  ⚠ BIASED (UNDER by 25.5%)
+[2026-03-19T02:18:40.265+0000] {logging_mixin.py:188} INFO - 
+── Cross-Slice Bias Analysis ──
+[2026-03-19T02:18:40.265+0000] {logging_mixin.py:188} INFO - Domain length ratio gap (medical vs legal): 0.017
+[2026-03-19T02:18:40.266+0000] {logging_mixin.py:188} INFO - Directional output diversity gap (en_to_es vs es_to_en): 0.011
+[2026-03-19T02:18:40.266+0000] {logging_mixin.py:188} INFO - Length word overlap gap (short vs long): 0.026
+[2026-03-19T02:18:40.273+0000] {logging_mixin.py:188} INFO - 
+Bias report saved to /opt/***/reports/bias_report.json
+[2026-03-19T02:18:40.275+0000] {logging_mixin.py:188} INFO - 
+── Bias Detection Summary ──
+[2026-03-19T02:18:40.275+0000] {logging_mixin.py:188} INFO -   ⚠ Slice 'medical' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap
+[2026-03-19T02:18:40.275+0000] {logging_mixin.py:188} INFO -   ⚠ Slice 'legal' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap
+[2026-03-19T02:18:40.276+0000] {logging_mixin.py:188} INFO -   ⚠ Slice 'short_sents' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap
+[2026-03-19T02:18:40.276+0000] {logging_mixin.py:188} INFO -   ⚠ Slice 'long_sents' shows bias in: avg_input_len, avg_output_len, avg_word_overlap
+[2026-03-19T02:18:40.276+0000] {logging_mixin.py:188} INFO - 
+Result: 4/6 slices flagged for bias.
+[2026-03-19T02:18:40.277+0000] {logging_mixin.py:188} INFO - Node 6b complete.
+[2026-03-19T02:18:41.071+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-19T02:18:41.078+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-19T02:18:41.179+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node6b_bias_detection, run_id=manual__2026-03-19T02:16:42.592505+00:00, execution_date=20260319T021642, start_date=20260319T021750, end_date=20260319T021841
+[2026-03-19T02:18:41.277+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-19T02:18:41.420+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T02:18:41.424+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

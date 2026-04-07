@@ -1,0 +1,31 @@
+[2026-03-11T00:21:26.770+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T00:21:26.875+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:21:26.892+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:21:26.892+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-11T00:21:26.925+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node9_upload_to_gcs> on 2026-03-11 00:00:32.108331+00:00
+[2026-03-11T00:21:26.930+0000] {standard_task_runner.py:64} INFO - Started process 1316 to run task
+[2026-03-11T00:21:26.936+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node9_upload_to_gcs', 'manual__2026-03-11T00:00:32.108331+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpn41xuat4']
+[2026-03-11T00:21:26.938+0000] {standard_task_runner.py:91} INFO - Job 29: Subtask node9_upload_to_gcs
+[2026-03-11T00:21:27.169+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node9_upload_to_gcs manual__2026-03-11T00:00:32.108331+00:00 [running]> on host 1412c404c413
+[2026-03-11T00:21:27.570+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node9_upload_to_gcs' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T00:00:32.108331+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T00:00:32.108331+00:00'
+[2026-03-11T00:21:27.571+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T00:21:27.588+0000] {logging_mixin.py:188} INFO - Files ready for GCS upload:
+[2026-03-11T00:21:27.588+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/train.json
+[2026-03-11T00:21:27.588+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/val.json
+[2026-03-11T00:21:27.589+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/test.json
+[2026-03-11T00:21:27.589+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/schema.json
+[2026-03-11T00:21:27.589+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/dataset_approval.json
+[2026-03-11T00:21:27.589+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/en_to_es.jsonl
+[2026-03-11T00:21:27.589+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/legal.jsonl
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/short_sents.jsonl
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/medical.jsonl
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/es_to_en.jsonl
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO -   → gs://translation-training-data/datasets/v2_approved/long_sents.jsonl
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO - Note: Activate GCS upload by adding credentials in Phase 2.
+[2026-03-11T00:21:27.590+0000] {logging_mixin.py:188} INFO - Node 9 complete.
+[2026-03-11T00:21:27.591+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-11T00:21:27.591+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T00:21:27.653+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=offline_translation_pipeline, task_id=node9_upload_to_gcs, run_id=manual__2026-03-11T00:00:32.108331+00:00, execution_date=20260311T000032, start_date=20260311T002126, end_date=20260311T002127
+[2026-03-11T00:21:27.697+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-03-11T00:21:27.800+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-11T00:21:27.804+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

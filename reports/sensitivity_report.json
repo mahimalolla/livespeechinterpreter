@@ -1,0 +1,36 @@
+{
+  "length_sensitivity": {
+    "short_length_ratio": 1.064,
+    "medium_length_ratio": 1.0,
+    "long_length_ratio": 0.995,
+    "short_count": 210,
+    "medium_count": 220,
+    "long_count": 170
+  },
+  "domain_sensitivity": {
+    "medical_output_diversity": 0.5519,
+    "legal_output_diversity": 0.4009,
+    "medical_count": 300,
+    "legal_count": 300
+  },
+  "direction_sensitivity": {
+    "en_to_es_avg_output_len": 18.803,
+    "es_to_en_avg_output_len": 18.423,
+    "en_to_es_count": 300,
+    "es_to_en_count": 300
+  },
+  "hyperparameter_sensitivity": {
+    "lr_2e4_loss": "EXPLODED (>12)",
+    "lr_5e5_loss": "STABLE (0.8-1.2)",
+    "lr_sensitivity": "HIGH \u2014 4x reduction fixed training",
+    "lora_r8_quality": "LOWER \u2014 insufficient capacity",
+    "lora_r16_quality": "STABLE \u2014 good quality/cost balance",
+    "lora_r_sensitivity": "MEDIUM",
+    "attn_eager_vs_sdpa": "eager required \u2014 sdpa caused gradient instability",
+    "attn_sensitivity": "HIGH \u2014 critical for Gemma3",
+    "packing_true_throughput": "2x faster",
+    "packing_sensitivity": "LOW \u2014 safe to enable",
+    "seq_len_128_vs_256": "128 fits T4 VRAM, 256 would OOM",
+    "seq_len_sensitivity": "HIGH \u2014 directly affects VRAM"
+  }
+}

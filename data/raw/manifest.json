@@ -1,0 +1,12 @@
+{
+  "emea_medical": {
+    "path": "/opt/airflow/data/raw/emea_medical.jsonl",
+    "checksum": "623e1bbe85f5e734863c22d55b40ba34",
+    "domain": "medical"
+  },
+  "europarl_legal": {
+    "path": "/opt/airflow/data/raw/europarl_legal.jsonl",
+    "checksum": "b8d993b3c32d50371f63acd48f71d030",
+    "domain": "legal"
+  }
+}

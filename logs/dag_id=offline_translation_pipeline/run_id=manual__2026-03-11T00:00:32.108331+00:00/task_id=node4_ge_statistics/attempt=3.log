@@ -1,0 +1,35 @@
+[2026-03-11T00:08:35.386+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-11T00:08:35.522+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node4_ge_statistics manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:08:35.539+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node4_ge_statistics manual__2026-03-11T00:00:32.108331+00:00 [queued]>
+[2026-03-11T00:08:35.539+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2026-03-11T00:08:35.574+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node4_ge_statistics> on 2026-03-11 00:00:32.108331+00:00
+[2026-03-11T00:08:35.580+0000] {standard_task_runner.py:64} INFO - Started process 1165 to run task
+[2026-03-11T00:08:35.585+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node4_ge_statistics', 'manual__2026-03-11T00:00:32.108331+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpvouzkf2p']
+[2026-03-11T00:08:35.587+0000] {standard_task_runner.py:91} INFO - Job 18: Subtask node4_ge_statistics
+[2026-03-11T00:08:35.865+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node4_ge_statistics manual__2026-03-11T00:00:32.108331+00:00 [running]> on host 1412c404c413
+[2026-03-11T00:08:36.341+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node4_ge_statistics' AIRFLOW_CTX_EXECUTION_DATE='2026-03-11T00:00:32.108331+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-11T00:00:32.108331+00:00'
+[2026-03-11T00:08:36.342+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-11T00:08:36.368+0000] {logging_mixin.py:188} INFO - Reading train.jsonl line by line...
+[2026-03-11T00:08:36.369+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-11T00:08:36.370+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 18, in node4
+    def node4(): from ge_stats import generate_ge_stats; generate_ge_stats()
+  File "/opt/airflow/scripts/ge_stats.py", line 16, in generate_ge_stats
+    with open("/opt/airflow/data/processed/train.jsonl") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/processed/train.jsonl'
+[2026-03-11T00:08:36.449+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=offline_translation_pipeline, task_id=node4_ge_statistics, run_id=manual__2026-03-11T00:00:32.108331+00:00, execution_date=20260311T000032, start_date=20260311T000835, end_date=20260311T000836
+[2026-03-11T00:08:36.495+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 18 for task node4_ge_statistics ([Errno 2] No such file or directory: '/opt/airflow/data/processed/train.jsonl'; 1165)
+[2026-03-11T00:08:36.524+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-03-11T00:08:36.619+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-11T00:08:36.623+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,32 @@
+[2026-03-10T08:30:38.427+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-10T08:30:38.585+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-10T08:22:11.365352+00:00 [queued]>
+[2026-03-10T08:30:38.608+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-10T08:22:11.365352+00:00 [queued]>
+[2026-03-10T08:30:38.609+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-03-10T08:30:38.644+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node3_train_val_test_split> on 2026-03-10 08:22:11.365352+00:00
+[2026-03-10T08:30:38.653+0000] {standard_task_runner.py:64} INFO - Started process 310 to run task
+[2026-03-10T08:30:38.660+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node3_train_val_test_split', 'manual__2026-03-10T08:22:11.365352+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmpae2_kr2y']
+[2026-03-10T08:30:38.662+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask node3_train_val_test_split
+[2026-03-10T08:30:38.939+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node3_train_val_test_split manual__2026-03-10T08:22:11.365352+00:00 [running]> on host 205ab6187ab8
+[2026-03-10T08:30:39.439+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node3_train_val_test_split' AIRFLOW_CTX_EXECUTION_DATE='2026-03-10T08:22:11.365352+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-10T08:22:11.365352+00:00'
+[2026-03-10T08:30:39.441+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-10T08:30:39.472+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-10T08:30:39.474+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 17, in node3
+    def node3(): from split_dataset import split_dataset; split_dataset()
+ModuleNotFoundError: No module named 'split_dataset'
+[2026-03-10T08:30:39.545+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=offline_translation_pipeline, task_id=node3_train_val_test_split, run_id=manual__2026-03-10T08:22:11.365352+00:00, execution_date=20260310T082211, start_date=20260310T083038, end_date=20260310T083039
+[2026-03-10T08:30:39.593+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task node3_train_val_test_split (No module named 'split_dataset'; 310)
+[2026-03-10T08:30:39.633+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-03-10T08:30:39.738+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-10T08:30:39.757+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

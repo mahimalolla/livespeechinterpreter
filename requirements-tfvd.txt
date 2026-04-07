@@ -1,0 +1,9 @@
+tensorflow-data-validation==1.15.0
+#
+# TFDV 1.15.x requires pandas<2 and pyarrow<11; keep this isolated
+# from Airflow/provider deps by using a separate venv/container.
+pandas<2
+pyarrow<11
+protobuf<5
+tensorflow==2.15.1
+dill

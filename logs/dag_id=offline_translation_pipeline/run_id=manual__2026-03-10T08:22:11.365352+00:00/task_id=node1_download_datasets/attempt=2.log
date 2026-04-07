@@ -1,0 +1,203 @@
+[2026-03-10T17:41:59.292+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-10T17:41:59.493+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T08:22:11.365352+00:00 [queued]>
+[2026-03-10T17:41:59.516+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T08:22:11.365352+00:00 [queued]>
+[2026-03-10T17:41:59.517+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2026-03-10T17:41:59.561+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): node1_download_datasets> on 2026-03-10 08:22:11.365352+00:00
+[2026-03-10T17:41:59.570+0000] {standard_task_runner.py:64} INFO - Started process 3002 to run task
+[2026-03-10T17:41:59.584+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'offline_translation_pipeline', 'node1_download_datasets', 'manual__2026-03-10T08:22:11.365352+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/offline_pipeline.py', '--cfg-path', '/tmp/tmp0boa_b3d']
+[2026-03-10T17:41:59.587+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask node1_download_datasets
+[2026-03-10T17:41:59.914+0000] {task_command.py:426} INFO - Running <TaskInstance: offline_translation_pipeline.node1_download_datasets manual__2026-03-10T08:22:11.365352+00:00 [running]> on host 205ab6187ab8
+[2026-03-10T17:42:00.429+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops' AIRFLOW_CTX_DAG_ID='offline_translation_pipeline' AIRFLOW_CTX_TASK_ID='node1_download_datasets' AIRFLOW_CTX_EXECUTION_DATE='2026-03-10T08:22:11.365352+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-10T08:22:11.365352+00:00'
+[2026-03-10T17:42:00.431+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-10T17:42:03.034+0000] {config.py:105} INFO - TensorFlow version 2.15.1 available.
+[2026-03-10T17:42:03.037+0000] {config.py:132} INFO - Apache Beam version 2.69.0 available.
+[2026-03-10T17:42:03.303+0000] {logging_mixin.py:188} INFO - Downloading emea_medical...
+[2026-03-10T17:42:03.599+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-10T17:42:03.819+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100 "HTTP/1.1 200 OK"
+[2026-03-10T17:42:06.050+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/revision/805090dc28bf78897da9641cdf08b61287580df9 "HTTP/1.1 200 OK"
+[2026-03-10T17:42:06.118+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/af-en?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:06.211+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9?recursive=false&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:06.815+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/opus-100/tree/805090dc28bf78897da9641cdf08b61287580df9/en-es?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:07.431+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1000 [00:00<?, ?ba/s]
+[2026-03-10T17:42:07.535+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   1%|1         | 14/1000 [00:00<00:07, 137.38ba/s]
+[2026-03-10T17:42:07.637+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   4%|3         | 37/1000 [00:00<00:05, 188.39ba/s]
+[2026-03-10T17:42:07.739+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   6%|6         | 60/1000 [00:00<00:04, 205.48ba/s]
+[2026-03-10T17:42:07.867+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   8%|8         | 81/1000 [00:00<00:04, 186.24ba/s]
+[2026-03-10T17:42:08.111+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  10%|#         | 100/1000 [00:00<00:07, 126.75ba/s]
+[2026-03-10T17:42:08.217+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  12%|#1        | 118/1000 [00:00<00:06, 137.74ba/s]
+[2026-03-10T17:42:08.319+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  14%|#3        | 138/1000 [00:00<00:05, 153.03ba/s]
+[2026-03-10T17:42:08.421+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  16%|#5        | 155/1000 [00:00<00:05, 156.78ba/s]
+[2026-03-10T17:42:08.563+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  17%|#7        | 172/1000 [00:01<00:05, 143.73ba/s]
+[2026-03-10T17:42:08.701+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  19%|#8        | 188/1000 [00:01<00:06, 134.50ba/s]
+[2026-03-10T17:42:08.805+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  20%|##        | 205/1000 [00:01<00:05, 142.17ba/s]
+[2026-03-10T17:42:08.908+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  22%|##2       | 223/1000 [00:01<00:05, 150.82ba/s]
+[2026-03-10T17:42:09.013+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  24%|##4       | 242/1000 [00:01<00:04, 159.26ba/s]
+[2026-03-10T17:42:09.117+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  26%|##6       | 261/1000 [00:01<00:04, 165.97ba/s]
+[2026-03-10T17:42:09.220+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  28%|##8       | 280/1000 [00:01<00:04, 171.60ba/s]
+[2026-03-10T17:42:09.350+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  30%|##9       | 298/1000 [00:01<00:04, 160.28ba/s]
+[2026-03-10T17:42:09.458+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  32%|###1      | 317/1000 [00:02<00:04, 164.59ba/s]
+[2026-03-10T17:42:09.576+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  33%|###3      | 334/1000 [00:02<00:04, 158.20ba/s]
+[2026-03-10T17:42:09.691+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  35%|###5      | 351/1000 [00:02<00:04, 155.07ba/s]
+[2026-03-10T17:42:09.794+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  37%|###6      | 367/1000 [00:02<00:04, 155.16ba/s]
+[2026-03-10T17:42:09.913+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  38%|###8      | 383/1000 [00:02<00:04, 148.55ba/s]
+[2026-03-10T17:42:10.040+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  40%|###9      | 398/1000 [00:02<00:04, 138.98ba/s]
+[2026-03-10T17:42:10.144+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  41%|####1     | 413/1000 [00:02<00:04, 140.40ba/s]
+[2026-03-10T17:42:10.244+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  43%|####2     | 428/1000 [00:02<00:04, 142.70ba/s]
+[2026-03-10T17:42:10.347+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  45%|####4     | 446/1000 [00:02<00:03, 152.19ba/s]
+[2026-03-10T17:42:10.452+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  46%|####6     | 464/1000 [00:03<00:03, 157.75ba/s]
+[2026-03-10T17:42:10.554+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  48%|####8     | 482/1000 [00:03<00:03, 163.22ba/s]
+[2026-03-10T17:42:10.661+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  50%|#####     | 500/1000 [00:03<00:03, 164.75ba/s]
+[2026-03-10T17:42:10.762+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  52%|#####1    | 519/1000 [00:03<00:02, 171.35ba/s]
+[2026-03-10T17:42:10.863+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  54%|#####3    | 538/1000 [00:03<00:02, 176.53ba/s]
+[2026-03-10T17:42:11.015+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  56%|#####5    | 556/1000 [00:03<00:02, 154.12ba/s]
+[2026-03-10T17:42:11.117+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  58%|#####8    | 581/1000 [00:03<00:02, 178.48ba/s]
+[2026-03-10T17:42:11.221+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  60%|######    | 605/1000 [00:03<00:02, 192.93ba/s]
+[2026-03-10T17:42:11.322+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  62%|######2   | 625/1000 [00:03<00:01, 194.82ba/s]
+[2026-03-10T17:42:11.422+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  65%|######4   | 646/1000 [00:03<00:01, 198.91ba/s]
+[2026-03-10T17:42:11.525+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  67%|######6   | 667/1000 [00:04<00:01, 200.18ba/s]
+[2026-03-10T17:42:11.636+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  69%|######8   | 688/1000 [00:04<00:01, 197.17ba/s]
+[2026-03-10T17:42:11.748+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  71%|#######   | 708/1000 [00:04<00:01, 191.16ba/s]
+[2026-03-10T17:42:11.852+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  73%|#######2  | 728/1000 [00:04<00:01, 191.39ba/s]
+[2026-03-10T17:42:11.961+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  75%|#######4  | 748/1000 [00:04<00:01, 189.33ba/s]
+[2026-03-10T17:42:12.064+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  77%|#######6  | 767/1000 [00:04<00:01, 187.70ba/s]
+[2026-03-10T17:42:12.167+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  79%|#######8  | 786/1000 [00:04<00:01, 187.00ba/s]
+[2026-03-10T17:42:12.274+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  80%|########  | 805/1000 [00:04<00:01, 184.12ba/s]
+[2026-03-10T17:42:12.387+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  82%|########2 | 824/1000 [00:04<00:00, 178.88ba/s]
+[2026-03-10T17:42:12.506+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  84%|########4 | 842/1000 [00:05<00:00, 169.85ba/s]
+[2026-03-10T17:42:12.607+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  86%|########6 | 861/1000 [00:05<00:00, 174.96ba/s]
+[2026-03-10T17:42:12.709+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  88%|########8 | 880/1000 [00:05<00:00, 178.41ba/s]
+[2026-03-10T17:42:12.816+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  90%|########9 | 898/1000 [00:05<00:00, 175.65ba/s]
+[2026-03-10T17:42:12.918+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  92%|#########1| 918/1000 [00:05<00:00, 181.47ba/s]
+[2026-03-10T17:42:13.019+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  94%|#########3| 938/1000 [00:05<00:00, 186.16ba/s]
+[2026-03-10T17:42:13.145+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  96%|#########5| 957/1000 [00:05<00:00, 173.97ba/s]
+[2026-03-10T17:42:13.253+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  98%|#########7| 975/1000 [00:05<00:00, 171.85ba/s]
+[2026-03-10T17:42:13.354+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format:  99%|#########9| 994/1000 [00:05<00:00, 176.47ba/s]
+[2026-03-10T17:42:13.382+0000] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|##########| 1000/1000 [00:05<00:00, 168.07ba/s]
+[2026-03-10T17:42:15.486+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2026-03-10T17:42:15.499+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-03-10T17:42:15.518+0000] {process_utils.py:132} INFO - Sending 15 to group 3002. PIDs of all processes in the group: [3002]
+[2026-03-10T17:42:15.520+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 3002
+[2026-03-10T17:42:15.541+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-10T17:42:16.075+0000] {logging_mixin.py:188} INFO - Saved emea_medical → /opt/***/data/raw/emea_medical.jsonl | checksum: 623e1bbe85f5e734863c22d55b40ba34
+[2026-03-10T17:42:16.077+0000] {logging_mixin.py:188} INFO - Downloading europarl_legal...
+[2026-03-10T17:42:17.162+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-10T17:42:18.048+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl "HTTP/1.1 200 OK"
+[2026-03-10T17:42:19.279+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl/revision/ab45e286aef3fb5780067100cb5a1132b52b7949 "HTTP/1.1 200 OK"
+[2026-03-10T17:42:19.330+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl/tree/ab45e286aef3fb5780067100cb5a1132b52b7949/bg-cs?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:19.370+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl/tree/ab45e286aef3fb5780067100cb5a1132b52b7949?recursive=false&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:19.530+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/api/datasets/Helsinki-NLP/europarl/tree/ab45e286aef3fb5780067100cb5a1132b52b7949/en-es?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-03-10T17:42:19.552+0000] {logging_mixin.py:188} WARNING - Downloading data:   0%|          | 0.00/181M [00:00<?, ?B/s]
+[2026-03-10T17:42:19.555+0000] {logging_mixin.py:188} WARNING - 
+[2026-03-10T17:42:19.658+0000] {_client.py:1026} INFO - HTTP Request: GET https://huggingface.co/datasets/Helsinki-NLP/europarl/resolve/ab45e286aef3fb5780067100cb5a1132b52b7949/en-es/train-00001-of-00002.parquet "HTTP/1.1 302 Found"
+[2026-03-10T17:42:23.669+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-10T17:42:23.682+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_transports/default.py", line 69, in map_httpcore_exceptions
+    yield
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_transports/default.py", line 233, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 216, in handle_request
+    raise exc from None
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 196, in handle_request
+    response = connection.handle_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 122, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 213, in connect_tcp
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno -5] No address associated with hostname
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/offline_pipeline.py", line 15, in node1
+    def node1(): from download_datasets import download_datasets; download_datasets()
+  File "/opt/airflow/scripts/download_datasets.py", line 26, in download_datasets
+    ds = load_dataset(cfg["hf_id"], cfg["config"], trust_remote_code=True)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/load.py", line 2609, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/builder.py", line 1027, in download_and_prepare
+    self._download_and_prepare(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/builder.py", line 1100, in _download_and_prepare
+    split_generators = self._split_generators(dl_manager, **split_generators_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/packaged_modules/parquet/parquet.py", line 44, in _split_generators
+    data_files = dl_manager.download_and_extract(self.config.data_files)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/download/download_manager.py", line 434, in download_and_extract
+    return self.extract(self.download(url_or_urls))
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/download/download_manager.py", line 257, in download
+    downloaded_path_or_paths = map_nested(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 491, in map_nested
+    mapped = [
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 492, in <listcomp>
+    map_nested(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 508, in map_nested
+    mapped = [
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 509, in <listcomp>
+    _single_map_nested((function, obj, batched, batch_size, types, None, True, None))
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 377, in _single_map_nested
+    return [mapped_item for batch in iter_batched(data_struct, batch_size) for mapped_item in function(batch)]
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/py_utils.py", line 377, in <listcomp>
+    return [mapped_item for batch in iter_batched(data_struct, batch_size) for mapped_item in function(batch)]
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/download/download_manager.py", line 313, in _download_batched
+    return [
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/download/download_manager.py", line 314, in <listcomp>
+    self._download_single(url_or_filename, download_config=download_config)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/download/download_manager.py", line 323, in _download_single
+    out = cached_path(url_or_filename, download_config=download_config)
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/file_utils.py", line 201, in cached_path
+    output_path = get_from_cache(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/file_utils.py", line 676, in get_from_cache
+    fsspec_get(
+  File "/home/airflow/.local/lib/python3.9/site-packages/datasets/utils/file_utils.py", line 385, in fsspec_get
+    fs.get_file(path, temp_file.name, callback=callback)
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py", line 1151, in get_file
+    http_get(
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/file_download.py", line 362, in http_get
+    with http_stream_backoff(
+  File "/usr/local/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/utils/_http.py", line 644, in http_stream_backoff
+    yield from _http_backoff_base(
+  File "/home/airflow/.local/lib/python3.9/site-packages/huggingface_hub/utils/_http.py", line 462, in _http_backoff_base
+    with client.stream(method=method, url=url, **kwargs) as response:
+  File "/usr/local/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_client.py", line 870, in stream
+    response = self.send(
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_client.py", line 1015, in _send_single_request
+    response = transport.handle_request(request)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_transports/default.py", line 233, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/airflow/.local/lib/python3.9/site-packages/httpx/_transports/default.py", line 86, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno -5] No address associated with hostname
+[2026-03-10T17:42:23.787+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=offline_translation_pipeline, task_id=node1_download_datasets, run_id=manual__2026-03-10T08:22:11.365352+00:00, execution_date=20260310T082211, start_date=20260310T174159, end_date=20260310T174223
+[2026-03-10T17:42:23.842+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 9 for task node1_download_datasets ([Errno -5] No address associated with hostname; 3002)
+[2026-03-10T17:42:23.883+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=3002, status='terminated', exitcode=1, started='17:41:58') (3002) terminated with exit code 1

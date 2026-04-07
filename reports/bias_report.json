@@ -1,0 +1,284 @@
+{
+  "overall_stats": {
+    "count": 265474,
+    "avg_input_len": 18.39,
+    "avg_output_len": 18.4,
+    "avg_length_ratio": 1.03,
+    "input_diversity": 0.055,
+    "output_diversity": 0.055,
+    "avg_word_overlap": 0.055
+  },
+  "slice_stats": {
+    "medical": {
+      "count": 158075,
+      "avg_input_len": 12.97,
+      "avg_output_len": 12.96,
+      "avg_length_ratio": 1.037,
+      "input_diversity": 0.103,
+      "output_diversity": 0.103,
+      "avg_word_overlap": 0.071
+    },
+    "legal": {
+      "count": 107399,
+      "avg_input_len": 26.37,
+      "avg_output_len": 26.39,
+      "avg_length_ratio": 1.02,
+      "input_diversity": 0.041,
+      "output_diversity": 0.041,
+      "avg_word_overlap": 0.03
+    },
+    "en_to_es": {
+      "count": 132921,
+      "avg_input_len": 18.08,
+      "avg_output_len": 18.75,
+      "avg_length_ratio": 1.029,
+      "input_diversity": 0.052,
+      "output_diversity": 0.063,
+      "avg_word_overlap": 0.055
+    },
+    "es_to_en": {
+      "count": 132553,
+      "avg_input_len": 18.71,
+      "avg_output_len": 18.04,
+      "avg_length_ratio": 1.032,
+      "input_diversity": 0.063,
+      "output_diversity": 0.052,
+      "avg_word_overlap": 0.055
+    },
+    "short_sents": {
+      "count": 147389,
+      "avg_input_len": 7.72,
+      "avg_output_len": 7.96,
+      "avg_length_ratio": 1.055,
+      "input_diversity": 0.121,
+      "output_diversity": 0.118,
+      "avg_word_overlap": 0.067
+    },
+    "long_sents": {
+      "count": 48927,
+      "avg_input_len": 45.09,
+      "avg_output_len": 44.06,
+      "avg_length_ratio": 0.982,
+      "input_diversity": 0.06,
+      "output_diversity": 0.061,
+      "avg_word_overlap": 0.041
+    }
+  },
+  "bias_scores": {
+    "medical": {
+      "avg_input_len": -0.295,
+      "avg_output_len": -0.296,
+      "avg_length_ratio": 0.007,
+      "input_diversity": 0.873,
+      "output_diversity": 0.873,
+      "avg_word_overlap": 0.291
+    },
+    "legal": {
+      "avg_input_len": 0.434,
+      "avg_output_len": 0.434,
+      "avg_length_ratio": -0.01,
+      "input_diversity": -0.255,
+      "output_diversity": -0.255,
+      "avg_word_overlap": -0.455
+    },
+    "en_to_es": {
+      "avg_input_len": -0.017,
+      "avg_output_len": 0.019,
+      "avg_length_ratio": -0.001,
+      "input_diversity": -0.055,
+      "output_diversity": 0.145,
+      "avg_word_overlap": 0.0
+    },
+    "es_to_en": {
+      "avg_input_len": 0.017,
+      "avg_output_len": -0.02,
+      "avg_length_ratio": 0.002,
+      "input_diversity": 0.145,
+      "output_diversity": -0.055,
+      "avg_word_overlap": 0.0
+    },
+    "short_sents": {
+      "avg_input_len": -0.58,
+      "avg_output_len": -0.567,
+      "avg_length_ratio": 0.024,
+      "input_diversity": 1.2,
+      "output_diversity": 1.145,
+      "avg_word_overlap": 0.218
+    },
+    "long_sents": {
+      "avg_input_len": 1.452,
+      "avg_output_len": 1.395,
+      "avg_length_ratio": -0.047,
+      "input_diversity": 0.091,
+      "output_diversity": 0.109,
+      "avg_word_overlap": -0.255
+    }
+  },
+  "bias_threshold": 0.2,
+  "bias_flags": [
+    {
+      "slice": "medical",
+      "count": 158075,
+      "issues": [
+        {
+          "metric": "avg_input_len",
+          "deviation": -0.295,
+          "direction": "UNDER",
+          "slice_val": 12.97,
+          "overall_val": 18.39
+        },
+        {
+          "metric": "avg_output_len",
+          "deviation": -0.296,
+          "direction": "UNDER",
+          "slice_val": 12.96,
+          "overall_val": 18.4
+        },
+        {
+          "metric": "input_diversity",
+          "deviation": 0.873,
+          "direction": "OVER",
+          "slice_val": 0.103,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "output_diversity",
+          "deviation": 0.873,
+          "direction": "OVER",
+          "slice_val": 0.103,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "avg_word_overlap",
+          "deviation": 0.291,
+          "direction": "OVER",
+          "slice_val": 0.071,
+          "overall_val": 0.055
+        }
+      ]
+    },
+    {
+      "slice": "legal",
+      "count": 107399,
+      "issues": [
+        {
+          "metric": "avg_input_len",
+          "deviation": 0.434,
+          "direction": "OVER",
+          "slice_val": 26.37,
+          "overall_val": 18.39
+        },
+        {
+          "metric": "avg_output_len",
+          "deviation": 0.434,
+          "direction": "OVER",
+          "slice_val": 26.39,
+          "overall_val": 18.4
+        },
+        {
+          "metric": "input_diversity",
+          "deviation": -0.255,
+          "direction": "UNDER",
+          "slice_val": 0.041,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "output_diversity",
+          "deviation": -0.255,
+          "direction": "UNDER",
+          "slice_val": 0.041,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "avg_word_overlap",
+          "deviation": -0.455,
+          "direction": "UNDER",
+          "slice_val": 0.03,
+          "overall_val": 0.055
+        }
+      ]
+    },
+    {
+      "slice": "short_sents",
+      "count": 147389,
+      "issues": [
+        {
+          "metric": "avg_input_len",
+          "deviation": -0.58,
+          "direction": "UNDER",
+          "slice_val": 7.72,
+          "overall_val": 18.39
+        },
+        {
+          "metric": "avg_output_len",
+          "deviation": -0.567,
+          "direction": "UNDER",
+          "slice_val": 7.96,
+          "overall_val": 18.4
+        },
+        {
+          "metric": "input_diversity",
+          "deviation": 1.2,
+          "direction": "OVER",
+          "slice_val": 0.121,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "output_diversity",
+          "deviation": 1.145,
+          "direction": "OVER",
+          "slice_val": 0.118,
+          "overall_val": 0.055
+        },
+        {
+          "metric": "avg_word_overlap",
+          "deviation": 0.218,
+          "direction": "OVER",
+          "slice_val": 0.067,
+          "overall_val": 0.055
+        }
+      ]
+    },
+    {
+      "slice": "long_sents",
+      "count": 48927,
+      "issues": [
+        {
+          "metric": "avg_input_len",
+          "deviation": 1.452,
+          "direction": "OVER",
+          "slice_val": 45.09,
+          "overall_val": 18.39
+        },
+        {
+          "metric": "avg_output_len",
+          "deviation": 1.395,
+          "direction": "OVER",
+          "slice_val": 44.06,
+          "overall_val": 18.4
+        },
+        {
+          "metric": "avg_word_overlap",
+          "deviation": -0.255,
+          "direction": "UNDER",
+          "slice_val": 0.041,
+          "overall_val": 0.055
+        }
+      ]
+    }
+  ],
+  "bias_summary": [
+    "Slice 'medical' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap",
+    "Slice 'legal' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap",
+    "Slice 'short_sents' shows bias in: avg_input_len, avg_output_len, input_diversity, output_diversity, avg_word_overlap",
+    "Slice 'long_sents' shows bias in: avg_input_len, avg_output_len, avg_word_overlap"
+  ],
+  "total_slices": 6,
+  "biased_slices": 4,
+  "bias_detected": true,
+  "cross_slice_analysis": {
+    "domain_bias": true,
+    "direction_bias": true,
+    "length_bias": true
+  }
+}
