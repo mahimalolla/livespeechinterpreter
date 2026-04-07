@@ -37,3 +37,5 @@ curl -X POST https://translation-api-1050963407386.us-central1.run.app/translate
 #    gcloud secrets add-iam-policy-binding cicd-gmail-app-password --project=mlops-489703 \
 #      --member=serviceAccount:${PN}@cloudbuild.gserviceaccount.com --role=roles/secretmanager.secretAccessor
 # 4) Change recipient: edit cloudbuild.yaml substitutions _NOTIFY_EMAIL
+# 5) If notify-email fails with PermissionDenied on the secret, grant secretAccessor to
+#    ${PN}@cloudbuild.gserviceaccount.com on cicd-gmail-app-password (see step 3).
