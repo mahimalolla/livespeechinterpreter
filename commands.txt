@@ -23,3 +23,17 @@ curl -X POST https://translation-api-1050963407386.us-central1.run.app/translate
   -d '{"text": "El contrato debe ser firmado antes del viernes.", "direction": "es_to_en", "domain": "legal"}'
 
   pre github actions
+
+# Local email test (uses repo .env — copy from .env.example, never commit .env)
+#    cp .env.example .env   # then edit SMTP_PASS
+#    python scripts/notify_email.py --status SUCCESS --build-id manual-test --message "Local test"
+
+# CI email alerts (Cloud Build → suchitrahole1998@gmail.com)
+# 1) Gmail: Google Account → Security → 2-Step Verification → App passwords → create "Cloud Build"
+# 2) Create secret (use the 16-char app password, no spaces):
+#    echo -n 'YOUR_APP_PASSWORD' | gcloud secrets create cicd-gmail-app-password --project=mlops-489703 --data-file=-
+# 3) Allow Cloud Build to read it:
+#    PN=$(gcloud projects describe mlops-489703 --format='value(projectNumber)')
+#    gcloud secrets add-iam-policy-binding cicd-gmail-app-password --project=mlops-489703 \
+#      --member=serviceAccount:${PN}@cloudbuild.gserviceaccount.com --role=roles/secretmanager.secretAccessor
+# 4) Change recipient: edit cloudbuild.yaml substitutions _NOTIFY_EMAIL

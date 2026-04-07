@@ -232,9 +232,18 @@ mlflow.set_experiment("gemma3-translation")
 run_name = f"gemma3-4b-qlora-{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
 
 with mlflow.start_run(run_name=run_name):
-    # Log all hyperparameters
+    mlflow.set_tags(
+        {
+            "training_domains": "medical,legal",
+            "task": "en_es_instruction_translation",
+            "selection_note": "Adapter versioned on GCS; CI slice eval + deploy gate",
+        }
+    )
+    # Log all hyperparameters (incl. pipeline data URIs for audit trail)
     mlflow.log_params({
         "model_name":     args.model_name,
+        "gcs_train":      args.gcs_train,
+        "gcs_val":        args.gcs_val,
         "lora_r":         args.lora_r,
         "lora_alpha":     args.lora_alpha,
         "lora_dropout":   args.lora_dropout,

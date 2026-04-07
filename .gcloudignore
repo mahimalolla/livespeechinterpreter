@@ -1,0 +1,6 @@
+# Do not upload local secrets to Cloud Build source archives
+.env
+.env.*
+!.env.example
+gcp-key.json
+mlops_env/

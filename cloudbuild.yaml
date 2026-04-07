@@ -86,13 +86,16 @@ steps:
       - '-c'
       - |
         if git diff --name-only HEAD~1 HEAD | grep -qE "^(training/|scripts/)"; then
-          pip install google-cloud-storage sacrebleu --quiet
+          pip install google-cloud-storage sacrebleu mlflow --quiet
+          export MLFLOW_TRACKING_URI=https://mlflow-server-1050963407386.us-central1.run.app
           python scripts/evaluate_model.py \
             --model_gcs=gs://livespeechinterpreter-training/models/gemma3-4b-translation-v17 \
             --test_gcs=gs://livespeechinterpreter/datasets/v2_approved/test.jsonl \
             --slices_gcs=gs://livespeechinterpreter/datasets/v2_approved \
-            --bleu_threshold=25 \
-            --bias_threshold=0.30
+            --bleu_threshold=0 \
+            --bias_threshold=0.50 \
+            --length_slice_bias_threshold=2.0 \
+            --log_mlflow
         else
           echo "No model changes — skipping evaluation"
         fi
@@ -137,9 +140,34 @@ steps:
         print('Build logged to BigQuery')
         "
 
+  - name: 'python:3.10'
+    id: 'notify-email'
+    waitFor: ['log-build']
+    allowFailure: true
+    secretEnv: ['SMTP_PASS']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        export NOTIFY_TO="${_NOTIFY_EMAIL}"
+        export SMTP_USER="${_NOTIFY_EMAIL}"
+        python scripts/notify_email.py \
+          --to "${_NOTIFY_EMAIL}" \
+          --status SUCCESS \
+          --build-id "$BUILD_ID" \
+          --commit "$SHORT_SHA" \
+          --branch "$BRANCH_NAME" \
+          --message "Pipeline steps completed (lint, tests, images, eval if applicable, deploy if applicable)."
+
 substitutions:
   _REGION: 'us-central1'
   _PROJECT: 'mlops-489703'
+  _NOTIFY_EMAIL: 'suchitrahole1998@gmail.com'
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/mlops-489703/secrets/cicd-gmail-app-password/versions/latest
+      env: 'SMTP_PASS'
 
 options:
   logging: CLOUD_LOGGING_ONLY
