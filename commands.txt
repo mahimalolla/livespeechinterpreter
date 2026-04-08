@@ -47,3 +47,18 @@ curl -X POST https://translation-api-1050963407386.us-central1.run.app/translate
 #      --role=roles/secretmanager.secretAccessor
 #    (Console: Cloud Build → Triggers → Edit → Service account — must match the member above.)
 # 5) Change recipient: edit cloudbuild.yaml substitutions _NOTIFY_EMAIL
+
+# Backfill Vertex training metrics to MLflow (no retraining)
+# export MLFLOW_TRACKING_URI=https://mlflow-server-1050963407386.us-central1.run.app
+# python scripts/backfill_vertex_training_mlflow.py \
+#   --adapter-gcs gs://livespeechinterpreter-training/models/gemma3-4b-translation-v17 \
+#   --vertex-pipeline-id 4727888025067978752 \
+#   --vertex-custom-job-id 3534825549954285568 \
+#   --train-loss-final 6.2549 \
+#   --train-loss-start 9.35 \
+#   --train-steps 3588 \
+#   --train-hours 6.92 \
+#   --learning-rate 5e-5 \
+#   --batch-size 4 \
+#   --epochs 2 \
+#   --notes "Backfilled from Vertex logs for codewalk proof"
