@@ -301,8 +301,6 @@ python scripts/sensitivity_analysis.py
 
 - Multi-language support (French, Mandarin, etc.)
 - Speaker diarization
-- Simultaneous / streaming low-latency translation
-- Direct speech-to-speech models
-- Advanced drift detection + auto-retraining trigger
+- Streaming low-latency translation
 - Authentication & rate limiting for the API
-- Frontend UI for real-time interaction
+- Advancement in Frontend UI for better user experience
