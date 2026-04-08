@@ -40,8 +40,10 @@ curl -X POST https://translation-api-1050963407386.us-central1.run.app/translate
 #      --member=serviceAccount:${PN}@cloudbuild.gserviceaccount.com --role=roles/secretmanager.secretAccessor
 #    gcloud secrets add-iam-policy-binding cicd-gmail-app-password --project=mlops-489703 \
 #      --member=serviceAccount:${PN}-compute@developer.gserviceaccount.com --role=roles/secretmanager.secretAccessor
-# 4) Still PermissionDenied? Your TRIGGER may use a custom service account. Console:
-#    Cloud Build → Triggers → (your trigger) → Service account — copy that email and:
+# 4) Still PermissionDenied? Your TRIGGER uses its own service account (not @cloudbuild).
+#    This repo’s trigger uses: mlops-pipeline@mlops-489703.iam.gserviceaccount.com — grant it:
 #    gcloud secrets add-iam-policy-binding cicd-gmail-app-password --project=mlops-489703 \
-#      --member='serviceAccount:THE_EMAIL_FROM_TRIGGER' --role=roles/secretmanager.secretAccessor
+#      --member='serviceAccount:mlops-pipeline@mlops-489703.iam.gserviceaccount.com' \
+#      --role=roles/secretmanager.secretAccessor
+#    (Console: Cloud Build → Triggers → Edit → Service account — must match the member above.)
 # 5) Change recipient: edit cloudbuild.yaml substitutions _NOTIFY_EMAIL

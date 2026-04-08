@@ -27,6 +27,9 @@ grant "serviceAccount:${PN}@cloudbuild.gserviceaccount.com"
 # Default Compute SA (some older / mixed setups resolve secrets with this identity)
 grant "serviceAccount:${PN}-compute@developer.gserviceaccount.com"
 
+# User-managed SA used by this project’s Cloud Build trigger (org policy / console setting)
+grant "serviceAccount:mlops-pipeline@${PROJECT}.iam.gserviceaccount.com"
+
 echo ""
 echo "IAM on secret (verify both lines appear):"
 gcloud secrets get-iam-policy "${SECRET}" --project="${PROJECT}" --format=yaml
