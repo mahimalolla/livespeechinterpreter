@@ -97,11 +97,11 @@ const Landing = () => {
 
       {/* ✅ Dashboard (ONLY ONCE) */}
       <button
-        onClick={() => navigate("/dashboard")}
-        className="hover:text-foreground transition-all hover:scale-105"
-      >
-        Dashboard
-      </button>
+  onClick={() => navigate("/dashboard")}
+  className="hover:text-foreground transition-all hover:scale-105"
+    >
+    Dashboard
+    </button>
     </div>
 
     {/* Right side */}
