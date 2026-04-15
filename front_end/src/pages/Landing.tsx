@@ -89,8 +89,11 @@ const Landing = () => {
               <span className="text-primary">Instantly</span>
             </h1>
 
-           <h2 className="text-3xl md:text-5xl font-bold text-primary mb-3">
-  with VISTA
+<h2 className="text-3xl md:text-5xl font-bold mb-3">
+  with{" "}
+  <span className="text-[#ff4500]">
+    VISTA
+  </span>
 </h2>
 
             <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto tracking-wide">
