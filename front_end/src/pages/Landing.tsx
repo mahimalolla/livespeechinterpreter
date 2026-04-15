@@ -71,13 +71,13 @@ const Landing = () => {
         </div>
       </nav>
 
-      {/* ─── Hero ─── */}
+       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden z-10">
         {/* Background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-primary/3 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-4xl mx-auto text-center px-6 pt-24 pb-20">
+        <div className="relative max-w-5xl mx-auto text-center px-6 pt-24 pb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/50 text-xs text-muted-foreground mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
             Real-time voice translation is live
@@ -89,25 +89,19 @@ const Landing = () => {
               <span className="text-primary">Instantly</span>
             </h1>
 
-<h2 className="text-3xl md:text-5xl font-bold mb-3">
-  with{" "}
-  <span className="text-[#ff4500]">
-    VISTA
-  </span>
-</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-3">
+              with{" "}
+              <span className="text-[#ff4500]">
+                VISTA
+              </span>
+            </h2>
 
-            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto tracking-wide">
+            <p className="text-sm md:text-base text-white/80 max-w-3xl mx-auto tracking-wide">
               Voice-based Interpretation & Streaming Translation Architecture
             </p>
           </div>
 
-         <p className="text-sm md:text-base text-white max-w-2xl mx-auto tracking-wide">
-  VISTA listens, transcribes, and translates your speech in real-time
-  with domain-aware precision for medical, legal, and general
-  conversations.
-</p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <button
               onClick={() => navigate("/translate")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98]"
@@ -124,8 +118,32 @@ const Landing = () => {
             </a>
           </div>
 
+          {/* Compliance badges */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/70 bg-card/70 backdrop-blur-sm">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span className="text-sm font-medium text-foreground">
+                HIPAA Ready
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/70 bg-card/70 backdrop-blur-sm">
+              <Lock className="w-4 h-4 text-blue-400" />
+              <span className="text-sm font-medium text-foreground">
+                GDPR Ready
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/70 bg-card/70 backdrop-blur-sm">
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-foreground">
+                Privacy First
+              </span>
+            </div>
+          </div>
+
           {/* Stats bar */}
-          <div className="flex items-center justify-center gap-8 md:gap-12 mt-16 pt-8 border-t border-border/50">
+          <div className="flex items-center justify-center gap-8 md:gap-12 pt-8 border-t border-border/50">
             {[
               { label: "Languages", value: "EN ↔ ES" },
               { label: "Domains", value: "3" },
@@ -144,7 +162,6 @@ const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* ─── Features ─── */}
       <section id="features" className="py-20 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
