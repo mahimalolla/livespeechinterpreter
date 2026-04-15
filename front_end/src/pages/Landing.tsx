@@ -48,12 +48,14 @@ const Landing = () => {
       <nav className="sticky top-0 z-50 border-b border-border/50 bg-card/60 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-5">
           <div className="flex items-center gap-2.5">
-            <img
-              src={isDark ? vistaLogoDark : vistaLogo}
-              alt="VISTA"
-              className="w-8 h-8"
-            />
-            <span className="text-base font-bold tracking-tight">VISTA</span>
+        <img
+          src={isDark ? vistaLogoDark : vistaLogo}
+          alt="VISTA"
+          className="w-10 h-10 md:w-12 md:h-12"
+/>
+<span className="text-lg md:text-xl font-bold tracking-tight">
+  VISTA
+</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#features" className="hover:text-foreground transition-colors">Features</a>
