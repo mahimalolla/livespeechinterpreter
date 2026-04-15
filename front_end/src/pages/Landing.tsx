@@ -96,12 +96,12 @@ const Landing = () => {
       </a>
 
       {/* ✅ Dashboard (ONLY ONCE) */}
-      <button
-  onClick={() => navigate("/dashboard")}
+<a
+  href="#dashboard"
   className="hover:text-foreground transition-all hover:scale-105"
-    >
-    Dashboard
-    </button>
+>
+  Dashboard
+</a>
     </div>
 
     {/* Right side */}
@@ -289,6 +289,92 @@ const Landing = () => {
         </div>
       </section>
 
+      <section id="dashboard" className="py-20 px-6 relative z-10">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-12">
+      <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">
+        Dashboard
+      </p>
+      <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+        Live Interpretation Overview
+      </h2>
+      <p className="text-muted-foreground max-w-2xl mx-auto">
+        A simple view of active sessions, language pairs, domains, and recent translation activity.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+      {[
+        { label: "Active Session", value: "Live" },
+        { label: "Language Pair", value: "English → Spanish" },
+        { label: "Mode", value: "Medical" },
+        { label: "Voice Output", value: "Enabled" },
+      ].map((item) => (
+        <div
+          key={item.label}
+          className="rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-6 shadow-sm hover:-translate-y-1 transition-all duration-300"
+        >
+          <p className="text-sm text-muted-foreground mb-2">{item.label}</p>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground">
+            {item.value}
+          </h3>
+        </div>
+      ))}
+    </div>
+
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="xl:col-span-2 rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-6">
+        <h3 className="text-xl font-bold tracking-tight mb-4">
+          Recent Sessions
+        </h3>
+        <div className="space-y-4">
+          {[
+            "Patient Intake Conversation",
+            "Contract Review Discussion",
+            "General Support Session",
+          ].map((title) => (
+            <div
+              key={title}
+              className="rounded-xl border border-border/50 bg-background/40 p-4"
+            >
+              <p className="font-medium text-foreground">{title}</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                English → Spanish • Domain-aware interpretation
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-6">
+        <h3 className="text-xl font-bold tracking-tight mb-4">
+          Trust & Privacy
+        </h3>
+        <div className="space-y-3">
+          <div className="rounded-xl border border-border/50 bg-background/40 p-4">
+            <p className="font-medium text-foreground">HIPAA Ready</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Designed for healthcare-focused privacy workflows.
+            </p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/40 p-4">
+            <p className="font-medium text-foreground">GDPR Ready</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Supports privacy-first global usage.
+            </p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/40 p-4">
+            <p className="font-medium text-foreground">Privacy First</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Secure handling of interpreted sessions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      
       {/* ─── Domains ─── */}
       <section id="domains" className="py-20 px-6 bg-muted/30 relative z-10">
         <div className="max-w-6xl mx-auto">
