@@ -89,14 +89,20 @@ const Landing = () => {
               <span className="text-primary">Instantly</span>
             </h1>
 
-            <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-3">
-              with VISTA
-            </h2>
+           <h2 className="text-3xl md:text-5xl font-bold text-primary mb-3">
+  with VISTA
+</h2>
 
             <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto tracking-wide">
               Voice-based Interpretation & Streaming Translation Architecture
             </p>
           </div>
+
+         <p className="text-sm md:text-base text-white max-w-2xl mx-auto tracking-wide">
+  VISTA listens, transcribes, and translates your speech in real-time
+  with domain-aware precision for medical, legal, and general
+  conversations.
+</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
