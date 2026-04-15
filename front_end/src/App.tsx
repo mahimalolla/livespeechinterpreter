@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Index from "./pages/Index";
-import dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 function App() {
