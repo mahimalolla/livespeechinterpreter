@@ -1,4 +1,4 @@
-# Live Interpreter — End-to-End MLOps Translation System
+# VISTA Live Speech Interpreter - End-to-End MLOps Translation System
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
@@ -8,7 +8,7 @@
 
 ## Overview
 
-**Live Interpreter** is a real-time **speech-to-speech translation system (English ↔ Spanish)** built with a production-grade MLOps pipeline.
+**VISTA Live Speech Interpreter** is a real-time **speech-to-speech translation system** (English ↔ Spanish) specialized for **medical and legal domains** built with a production-grade MLOps pipeline from raw data ingestion through fine-tuning, deployment, and live inference.
 
 It enables seamless bilingual communication in **medical and legal domains** using:
 
@@ -22,11 +22,25 @@ It enables seamless bilingual communication in **medical and legal domains** usi
 
 ---
 
+## How It Works
+
+```
+Microphone
+    └── Google Speech-to-Text (STT)
+            └── Fine-tuned Gemma 3 4B (QLoRA) — FastAPI on Cloud Run
+                    └── Google Text-to-Speech (TTS)
+                            └── Speaker
+```
+
+The system supports two translation directions (`en_to_es`, `es_to_en`) and two domains (`medical`, `legal`), with domain-aware output at inference time.
+
+---
+
 ## System Architecture
 
-### Offline Pipeline (Airflow + Docker)
+### Data Pipeline (Apache Airflow + Docker)
 
-Managed by the `offline_translation_pipeline` DAG. Runs as a directed graph with a DVC-aware branch:
+The `offline_translation_pipeline` Airflow DAG processes and validates training data before uploading to Google Cloud Storage. Runs as a directed graph with a DVC-aware branch:
 
 ```
 DVC pull/download
@@ -59,21 +73,22 @@ Scripts in `scripts/`:
 | `sensitivity_analysis.py` | Post-training data + hyperparameter sensitivity report |
 | `evaluate_model.py` | BLEU + slice-level bias evaluation |
 | `register_existing_model_mlflow.py` | Register a GCS adapter in the MLflow Model Registry |
-| `vertex_training_mlflow.py` | Backfill a completed Vertex AI run into MLflow |
+| `vertex_training_mlflow.py` | Register model that ran on Vertex AI into MLflow |
 
 ---
 
 ### Model Training (Vertex AI)
 
-Training runs on Vertex AI using `training/train.py`. The adapter is uploaded to GCS on completion and the run is logged to MLflow.
+Training runs on Vertex AI using `training/train.py`. Fine-tunes `google/gemma-3-4b-it` with QLoRA on a T4 GPU. The resulting adapter (~131 MB) is uploaded to GCS on completion and the run is logged to MLflow.
+
 
 | Setting | Value |
 |---|---|
 | Base model | `google/gemma-3-4b-it` |
 | Fine-tuning | QLoRA (4-bit NF4 quantization) |
 | LoRA rank | r=16, alpha=32, dropout=0.05 |
-| Learning rate | 5e-5 (critical — 2e-4 causes loss explosion) |
-| Attention | `eager` (required — `sdpa` causes gradient instability on Gemma3) |
+| Learning rate | 5e-5 (critical - 2e-4 causes loss explosion) |
+| Attention | `eager` (required - `sdpa` causes gradient instability on Gemma3) |
 | Batch size | 4, gradient accumulation 4 (effective batch 16) |
 | Sequence length | 128 (256 OOMs on T4) |
 | Packing | enabled (2× throughput) |
@@ -87,9 +102,9 @@ Training runs on Vertex AI using `training/train.py`. The adapter is uploaded to
 
 ---
 
-### Online Inference (FastAPI + Cloud Run)
+### Inference API (FastAPI + Cloud Run)
 
-`inference/main.py` — deployed to Cloud Run at startup, loads the LoRA adapter from GCS asynchronously.
+`inference/main.py` — deployed to Cloud Run at startup, loads the LoRA adapter from GCS asynchronously. Every request is logged to BigQuery.
 
 **Endpoints:**
 
@@ -108,7 +123,7 @@ Training runs on Vertex AI using `training/train.py`. The adapter is uploaded to
 }
 ```
 
-Every inference call is logged to BigQuery (`mlops-489703.translation_monitoring.inference_logs`) with: timestamp, input/output text, direction, domain, latency_ms, input/output word counts.
+**BigQuery logging:** Every inference call is logged to BigQuery (`mlops-489703.translation_monitoring.inference_logs`) with: timestamp, input/output text, direction, domain, latency_ms, input/output word counts.
 
 ---
 
@@ -118,14 +133,20 @@ Every inference call is logged to BigQuery (`mlops-489703.translation_monitoring
 
 1. **lint-scripts** — pyflakes on `scripts/` and `dags/`
 2. **run-tests** — pytest on `tests/` (if present)
-3. **build-training-image** — only if `training/` changed → `gemma-trainer:$SHA`
-4. **push-training-image** — push to Artifact Registry
-5. **build-inference-image** — only if `inference/` changed → `inference-api:$SHA`
-6. **push-inference-image** — push to Artifact Registry
+3. **build-training-image** — builds only if `training/` changed → `gemma-trainer:$SHA`
+4. **push-training-image** — pushes to Artifact Registry
+5. **build-inference-image** — builds only if `inference/` changed → `inference-api:$SHA`
+6. **push-inference-image** — pushes to Artifact Registry
 7. **evaluate-model** — only if `training/` or `scripts/` changed; runs BLEU + bias eval against v17 adapter; logs to MLflow
 8. **deploy-cloud-run** — only if `inference/` changed; deploys to Cloud Run (16 GiB, 4 CPU, min 1 instance)
 9. **log-build** — records build metadata to BigQuery (`translation_monitoring.cicd_builds`)
 10. **notify-email** — sends Gmail alert via Secret Manager app password
+
+---
+
+### 5. Frontend (React + TypeScript)
+
+Located in `front_end/`. Built with Vite, TailwindCSS, shadcn/ui, and React Query. Containerized with Docker + nginx for deployment.
 
 ---
 
@@ -136,7 +157,7 @@ All training runs, evaluations, and analyses land in the `gemma3-translation` ex
 | Run type | Script | Run name pattern |
 |---|---|---|
 | Live training | `training/train.py` | `gemma3-4b-qlora-YYYYMMDD_HHmmSS` |
-| Vertex backfill | `scripts/vertex_training_mlflow.py` | `vertex-train-backfill-YYYYMMDD_HHmmSS` |
+| Vertex AI model training | `scripts/vertex_training_mlflow.py` | `vertex-train-backfill-YYYYMMDD_HHmmSS` |
 | Sensitivity analysis | `scripts/sensitivity_analysis.py` | `sensitivity-analysis` |
 | Model evaluation | `scripts/evaluate_model.py` | logged per CI run |
 
@@ -162,12 +183,28 @@ Results are logged to MLflow and saved to `reports/sensitivity_report.json`.
 
 ---
 
+## Bias Detection & Mitigation
+
+**Slices evaluated:** medical vs. legal, short vs. long sentences, EN→ES vs. ES→EN.
+
+**Findings:**
+- Legal domain underrepresented in the training corpus
+- Sentence length imbalance (skew toward shorter sentences)
+
+**Mitigations applied:**
+- Oversampling of legal domain data
+- Length-stratified sampling
+- Sequence length tuning for better long-sentence coverage
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
 | Orchestration | Apache Airflow (Docker Compose) |
 | Data Versioning | DVC + GCS |
+| Data validation | Great Expectations + TensorFlow Data Validation (TFDV) |
 | Training | Vertex AI (T4 GPU) |
 | Model | Gemma 3 4B + QLoRA (PEFT) |
 | Inference Framework | Transformers + TRL |
@@ -177,6 +214,8 @@ Results are logged to MLflow and saved to `reports/sensitivity_report.json`.
 | Experiment Tracking | MLflow (Cloud Run) |
 | Monitoring | BigQuery |
 | Container Registry | Artifact Registry |
+| Speech | Google Cloud Speech-to-Text + Text-to-Speech + PyAudio |
+| Frontend | React 18, TypeScript, Vite, TailwindCSS, shadcn/ui, React Query |
 
 ---
 
@@ -277,22 +316,6 @@ python scripts/sensitivity_analysis.py
 ├── commands.txt                   # Quick-reference commands
 └── requirements.txt
 ```
-
----
-
-## Bias Detection & Mitigation
-
-**Slices evaluated:** medical vs. legal, short vs. long sentences, EN→ES vs. ES→EN
-
-**Key findings:**
-- Legal data underrepresented in training corpus
-- Sentence length imbalance (more short sentences)
-
-**Mitigation strategies applied:**
-- Oversampling of legal domain data
-- Length-stratified sampling
-- Sequence length tuning for long-sentence coverage
-
 ---
 
 ## Future Enhancements
