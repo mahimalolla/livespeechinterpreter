@@ -1,4 +1,4 @@
-# Vertex AI Training
+# Model Training
 
 This folder contains everything needed to fine-tune `google/gemma-3-4b-it` for English↔Spanish translation in the medical and legal domains. The job runs on a Vertex AI T4 GPU and produces a small LoRA adapter that gets uploaded to Google Cloud Storage and served by the inference API.
 
